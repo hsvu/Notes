@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>lecture_02</title>
+
+
+<style type="text/css">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #fff;
+    background-color: #282a36;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
+a {
+    color: #59acf3;
+}
+a:hover {
+    color: #a7d8ff;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+	color: #ff4a14;
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #282a36;
+    color: #ff4a14;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+
+</style>
+
+<style type="text/css">
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Alphabet, Strings and Languages</h1>
+
+<h2 id="toc_1">Definitions</h2>
+
+<hr>
+
+<h4 id="toc_2">Alphabet</h4>
+
+<p>denoted by Σ is any finite set of symbols. <br>
+For example this set {0,1} is a alphabet that describes every symbol used in binary strings. This can be call</p>
+
+<h4 id="toc_3">String</h4>
+
+<p>A finite sequence of symbols drawn from Σ, i.e a string is just a series of symbols from a alphabet connected. <br>
+Note that in this notation |s| means the length of string which is just the number of symbols contained. <br>
+We use the symbol (\(\epsilon\))</p>
+
+<h4 id="toc_4">Language</h4>
+
+<p>any set of strings over Σ, that is to say a series of strings. <br>
+note that it has two special cases</p>
+
+<ul>
+<li>∅: the empty set</li>
+<li>{\(\epsilon\)} : the set with only empty strings</li>
+</ul>
+
+<h4 id="toc_5">Examples of languages</h4>
+
+<p>Σ = {0, 1} defines the a language where the only valid symbols are 0 and 1, in this language strings are just 0&#39;s and 1&#39;s. <br>
+lets say every string in this language is a instruction<br>
+This language now defines the set of M68K, MIPS, Pentium instructions etc. </p>
+
+<p>now if we say Σ = {a,b,c,...} i.e Σ = ASCII set. We can now define most high level languages such as C, Haskell, VC etc. as every program in C is just a string in this alphabet. the &#39;\n&#39; is just another symbol. </p>
+
+<h2 id="toc_6">String transformations</h2>
+
+<hr>
+
+<p>We can split up a string into multiple parts</p>
+
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>prefix of s</td>
+<td>s with 0 or more trailing (on the end) symbols removed</td>
+</tr>
+<tr>
+<td>suffix of s</td>
+<td>same as prefix but done with the leading symbols</td>
+</tr>
+<tr>
+<td>substring of s</td>
+<td>s after a prefix and suffix have been removed</td>
+</tr>
+<tr>
+<td>proper prefix suffix, substring of s</td>
+<td>Any nonempty string x that is, respectively, a prefix, suffix or substring of s such that s != x</td>
+</tr>
+</tbody>
+</table>
+
+<p>We can also concatenate strings, if we have \(x\) and \(y\) adding y onto x or concatenating x and y gives us \(xy\)</p>
+
+<p>if x is key and y is work xy is keyword. </p>
+
+<p>Not too complicated, but do note that with this we have this property with \(\epsilon\)</p>
+
+<p>\(\epsilon x= x\epsilon = x\)</p>
+
+<p>Again kinda obvious but it&#39;s good to have this formalised. </p>
+
+<h2 id="toc_7">Language Transformations</h2>
+
+<p>Here is a quick table to outline some of these transformations on two languages L and M</p>
+
+<p><img src="L_trans.png" style="width: 500px"></p>
+
+<p>This may seem hard to visualise, take a look at the example first</p>
+
+<p><img src="L_trans_E.png" style="width: 500px"></p>
+
+<p>The union of two languages is just a combination of all the symbols in both. </p>
+
+<p>The superscript number just defines length of the string. </p>
+
+<p>the concatenation of two languages is a set of all combinations of a symbol from L followed by a symbol of M. </p>
+
+<p>The Kleene Closure is just the same as the * in regex. I.e it represents 0 or more consecutive instances of a string. <br>
+The mathematical representation just says that L* is the set of every possible number of repetitions of L including the empty string, otherwise known as 0 or more concatenations of L. </p>
+
+<p>The Positive closure just states that the empty string is not included in this set. </p>
+
+<h1 id="toc_8">Regular Expressions</h1>
+
+<p>RE is build on top of this. REs define <code>regular languages</code> (RL) or regular sets. That is to say a certain Regular Expression simply refers to a specific regular language or regular set of strings. </p>
+
+<p>This makes sense as a RE is used to match a certain type of string and thus must represent some set of correct matching expressions. </p>
+
+<p>You can formally define regular expressions in two steps, the inductive base (setting up the base cases) and then inductive steps which is the general cases. </p>
+
+<h2 id="toc_9">Inductive Base</h2>
+
+<hr>
+
+<ol>
+<li>\(\epsilon\) is a RE, denoting the RL {\(\epsilon\)}</li>
+<li>a ∈ Σ is a RE,denoting the RL{a}f</li>
+</ol>
+
+<p>In simple terms, \(\epsilon\) represents a set of empty strings so the regular expression &quot;&quot; matching nothing. <br>
+And in addition a regular expression with just a symbol defines a set with that symbol. i.e it can only match with every instance of that symbol. </p>
+
+<h2 id="toc_10">Inductive Step</h2>
+
+<hr>
+
+<p>Suppose r and s are REs, denoting the RLs L(r) and L(s)</p>
+
+<p>Now we can start forming the regular expression language while linking it to our formal definition of languages, strings and alphabets. </p>
+
+<ol>
+<li>(r)|(s) is a RE, denoting the RL L(r) \(\cup\) L(s)</li>
+<li>(r)(s) is a RE, denoting the RL concatination L(r)L(s) </li>
+<li>(r)∗ is a RE, denoting the RL kleene closure L(r)∗</li>
+<li>(r) is a RE, denoting the RL postive closure L(r)</li>
+</ol>
+
+<h2 id="toc_11">Rules</h2>
+
+<hr>
+
+<p>But we do have to define some rules around this now</p>
+
+<h4 id="toc_12">Precedence</h4>
+
+<ul>
+<li>“∗” has the highest precedence</li>
+<li>“Concatenation” has the second highest precedence</li>
+<li>“|” has the lowest precedence</li>
+</ul>
+
+<h4 id="toc_13">Associativity</h4>
+
+<p>all are left-associative, if you don&#39;t have brackets, evaluate left to right, and all special symbols apply to the symbol to the left of it. </p>
+
+<p>\(a|b^*c\) is the same as \((a)|((b)^*(c))\)</p>
+
+<h2 id="toc_14">Examples</h2>
+
+<hr>
+
+<p>• Alphabet: Σ = {0, 1}<br>
+• RE: 0(0|1)*</p>
+
+<p>What is the language defined by the RE?</p>
+
+<p>Well we know from basic regex that 0(0|1)* is just any string that starts with a 0 and contains any combination of 0&#39;s and 1&#39;s afterwards. </p>
+
+<p>how this breaks down formally though is</p>
+
+<p>\(L(0(0|1)^* )\)<br>
+\(= L(0)L((0|1)^* )\)<br>
+\(= \{0\}L(0|1)^*\)<br>
+\(= \{0\}(L(0) ∪ L(1))^*\)<br>
+\(= \{0\}(\{0\} ∪ \{1\})^*\)<br>
+\(= \{0\}\{0, 1\}^*\)<br>
+\(= \{0\}\{\epsilon ,0,1,00,01,10,11,...\}\)<br>
+\(= \{0,00,01,000,001,010,011,...\}\)</p>
+
+<p>Kinda takes the magic out of regex doesn&#39;t it?</p>
+
+<h2 id="toc_15">Notational Shorthands</h2>
+
+<hr>
+
+<p>If you have used regex before you may be thinking what about the life savers like <code>?</code> or <code>[]</code>. These are actually defined by the language but  just in longer forms. So we use these shorthands</p>
+
+<p>\(r? = r|\epsilon\)<br>
+\([a-z] = \{abcdefghijklmnopqrstuvwxyz\}\)<br>
+and using the caret (<code>^</code>) just means the set of all valid symbols in the alphabet excluding the symbols specified. </p>
+
+<h2 id="toc_16">VC</h2>
+
+<hr>
+
+<p>Just note that in VC you can use the following regex to tag identifiers (variable names etc.) <br>
+<code>letter(letter|digit)*</code><br>
+But note that in the spec letter includes the <code>_</code> character. For us letter will be ascii letters but in java it can be any unicode character awesome enough.<br>
+You can have variable names in greek letters or mandarin. </p>
+
+<p>Just has a heads up the RE for reals is a bit complex because you can have digits fractions and exponents. <br>
+It ends up being a set of regex: (NOTE that in this . does not represent any character)</p>
+
+<div><pre class="line-numbers"><code class="language-perl">digit:          /0|1|2|3|4|5|6|7|8|9/
+fraction:       /.digit+/
+exponent:       /(E|e)(+|-)?digit+/
+floatLiteral:   /digit* fraction exponent? | digit+. | digit+.?exponent/</code></pre></div>
+
+<h1 id="toc_17">Finite Automata / Finite State Machines</h1>
+
+<h2 id="toc_18">Defintion</h2>
+
+<hr>
+
+<p>A finite automaton consists of a 5-tuple:<br>
+<code>(Σ,S,T,F,I)</code></p>
+
+<ul>
+<li>Σ is an alphabet</li>
+<li>S is a finite set of states</li>
+<li>T is a state transition function: T : S × Σ → S</li>
+<li>F is a finite set of final or accepting states</li>
+<li>I is the start state: I ∈ S.</li>
+</ul>
+
+<p>In essence it is just a way to represent a machine/automata/system which has a finite number of states and a fixed set of ways to transition between those state. </p>
+
+<h2 id="toc_19">Representation</h2>
+
+<hr>
+
+<p>We can represent finite state automata (FA) with Transition graphs. Details below</p>
+
+<p><img src="trans_graph.png" style="width: 300px"></p>
+
+<p>Note that a FA will only accept a string x if there is some path on the machine which fits in with the string. I.e if x was hello there must be some path in the machine that starts with h at a valid start state and transitions legally to a end state with o.</p>
+
+<h2 id="toc_20">Example</h2>
+
+<hr>
+
+<p><img src="trans_graph_E.png" style="width: 300px"></p>
+
+<p>This state will accept <code>strings of 0 and 1 with an odd number of 1&#39;s</code></p>
+
+<p>if we were to break this down into it&#39;s 5 tuple we would get this</p>
+
+<ul>
+<li>Σ : {0,1} </li>
+<li>S : {S,A}</li>
+<li>T <br>
+: T(S,0) = S<br>
+: T(S,1) = A<br>
+: T(A,0) = A<br>
+: T(A,1) = S<br></li>
+<li>F : {A}</li>
+<li>I : S</li>
+</ul>
+
+<p>The alphabet is just 0 or 1, there are 2 states S or A. there is only 1 Final ending state, A, and there is only 1 start state, S. </p>
+
+<p>The transitions are listed as T(state, symbol) = result<br>
+Thus we can summarise the Transition functions as </p>
+
+<p>S -- 0 --&gt; S<br>
+S -- 1 --&gt; A<br>
+A -- 0 --&gt; A<br>
+A -- 1 --&gt; S</p>
+
+<p>Remember that T is a function S×Σ to S.<br>
+But aside from this we also need to consider invalid input.</p>
+
+<p>Lets sat that A -- 0 --&gt; A wasn&#39;t defined and suddenly we get to the point where we need to calculate T(A, 0). Although this isn&#39;t on the graph it is implied to be = to error. These extra error transitions arn&#39;t drawn on but implied, by convention at least. </p>
+
+<h2 id="toc_21">Determinism</h2>
+
+<hr>
+
+<p>You are filled with <code>DETERMINATION</code></p>
+
+<h4 id="toc_22">Deterministic Finite State Automata</h4>
+
+<p>a FA is a DFA if </p>
+
+<ul>
+<li>no state has an \(\epsilon\)-transition, i.e. an transition on an empty string input</li>
+<li>for each state s and input symbol a, there is
+at most one path out of the state. I.e there arn&#39;t two paths that you could take. </li>
+</ul>
+
+<h4 id="toc_23">Nondeterministic Finite State Automata</h4>
+
+<p>a FA is NFA if it is not a DFA i.e</p>
+
+<ul>
+<li>you can make several parallel transitions on a given input</li>
+<li>you can have a \(\epsilon\) state</li>
+</ul>
+
+<p>but a NFA still must have Acceptance, the existence of at least one path that leads to a finishing or accepting state.</p>
+
+<h4 id="toc_24">Difference</h4>
+
+<p><code>from http://math.stackexchange.com/questions/563829/difference-between-nfa-and-dfa</code></p>
+
+<p>in a DFA each possible input determines the resulting state uniquely. Every input causes a state change, and the new state is completely determined by the input. Moreover, the automaton can change state only after reading an input.</p>
+
+<p>If it’s an NFA, some inputs may allow a choice of resulting states, and some may cause the automaton to choke, because there is no new state corresponding to that input. Moreover, the automaton may be constructed so that it can change state to some new state without reading any input at all. (epsilon loops for example)</p>
+
+<p>If you start a DFA in its initial state and input some word w, the state in which the DFA ends up is completely determined by w and w will produce a <code>deterministic</code> consistent result.</p>
+
+<p>If you start an NFA in its initial state and input some word w, there may be several possible states in which it can end up, since some of the inputs along the way may have allowed a choice of state changes.</p>
+
+<p>Consequently, you can’t predict from ww alone in exactly which state the automaton will finish; hence <code>nondeterministic</code>. </p>
+
+<p>If it’s a DFA, we know that each word completely determines the final state of the automaton, and we say that the word is accepted if that state is an acceptor state.</p>
+
+<p>If it’s an NFA, there might be several possible final states that could result from reading a given word; as long as at least one of them is an acceptor state, we say that the automaton accepts the word.</p>
+
+<p>Note that this is why we want to soon be able to go from a nfa to a dfa. DFA is a lot more reliable in producing a output, something we want in our program.</p>
+
+<h2 id="toc_25">Thompson’s Construction of NFA from REs</h2>
+
+<hr>
+
+<p>You can convert RE into NFA&#39;s through a series of ways, One of those ways is Thompsons construction. <br>
+This method is syntax driven, Inductive, and important. </p>
+
+<p>Inductive just means the cases in the construction of the NFA follow<br>
+the cases in the definition of REs and important means that if a symbol occurs several times in a RE , a separate NFA is constructed for each occurrence</p>
+
+<h4 id="toc_26">Inductive base</h4>
+
+<p><img src="base.png" style="width: 300px"></p>
+
+<h4 id="toc_27">Inductive step</h4>
+
+<p>suppose N(r) and N(s) are NFAs for REs r and s.</p>
+
+<p><img src="thomas.png" style="width: 500px"></p>
+
+<p>note that <code>r|s</code> branches off into two NFA&#39;s. Also note that you can take a epsilon path without taking in another token. great for looping. </p>
+
+<p>The <code>rs</code> blends together so you transition from r to s to acceptance. </p>
+
+<p>the \(r^*\) can either skip the NFA or enter into it with a variable number of repeats Before exit. again the repeat happens without needing a specific input token. </p>
+
+<h4 id="toc_28">Example</h4>
+
+<p>Converting \((0|10^{∗}1)^∗10^∗\) to an NFA</p>
+
+<p>now we have some rules on how to handle r|s rs and r* so lets break this down into those terms</p>
+
+<p>Let (0|10*1) be A and 0 be B</p>
+
+<p>thus we get</p>
+
+<p>A* -- 1 --&gt; B*</p>
+
+<p>and as we know *&#39;s are represented with 4 states, something like this</p>
+
+<p><img src="step1.png" style="width: 300px"></p>
+
+<p>Where you can go from one state to the next then check if you are done and if not keep looping. There is also of course the option to skip as this is a * not a +.</p>
+
+<p>now using this we can evaluate B quite easily. note the numbers on the states are arbitrary. </p>
+
+<p>0* is represented as </p>
+
+<p><img src="step2.png" style="width: 300px"></p>
+
+<p>We enter in, and we can either skip if there is no 0 or register the 0 as many times as there is one. Once it&#39;s done we go to the terminal state. </p>
+
+<p>A is more complex. We have (0|10*1) which we need to break up into two branches 0 and 10*1. both of which can be looped due to the *.</p>
+
+<p>so we start the loop, either branch into 0 or 1 -&gt; 0* -&gt; 1 and then at the end of both loop back and repeat the branch. <br>
+Thus we get this at the end</p>
+
+<p><img src="final.png" style="width: 500px"></p>
+
+<h2 id="toc_29">Subset construction NFA to DFA</h2>
+
+<hr>
+
+<p>It&#39;s actually very difficult to go from a RE to DFA directly but going first to a NFA then to a DFA is very possible, especially in code. <br>
+Why would we want to do this? NFA&#39;s are easy to generate in code but not as efficient to execute as DFA&#39;s for similar reasons we usually take a DFA and minimise it to further increase the speed and efficiency of the graph. (as well as this DFA&#39;s are way better to run in code because they are deterministic and give consistent results)</p>
+
+<p>Note this algorithm is called subset construction because a DFA state corresponds to a subset of NFA states. This is because in DFA we can&#39;t have \(\epsilon\) so part of this is compressing those and reducing the total number of states as a result </p>
+
+<p>There are at most \(2^n\) DFA states, where \(n\) is the total number of the NFA states. This is because sometimes the conversion does increase the number of states in attempting to make a deterministic graph.</p>
+
+<h4 id="toc_30">Operations</h4>
+
+<p>There are 3 main operations used to help convert NFA&#39;s to DFA&#39;s<br>
+Note that T is a set of NFA states and s is a single NFA state</p>
+
+<table>
+<thead>
+<tr>
+<th>OPERATION</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>\(\epsilon\)-closure(<code>s</code>)</td>
+<td>the set of states that you can get to from a given state <code>s</code> via a \(\epsilon\) link/transition</td>
+</tr>
+<tr>
+<td>\(\epsilon\)-closure(T)</td>
+<td>Same as above but takes in a set and checks every s</td>
+</tr>
+<tr>
+<td>move(T , <code>a</code>)</td>
+<td>Looks through all the states in T and finds all the states you can get to via a <code>a</code> transition. I.e every state you can get too from a given set of states if the input character was <code>a</code></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_31">Algorithm</h4>
+
+<ol>
+<li>Create the start state of the DFA by taking the \(\varepsilon\)-closure of the start state of the NFA.</li>
+<li>Perform the following for the new DFA state: 
+
+<ul>
+<li>For each possible input symbol:
+
+<ul>
+<li>Apply move(T,a) to the newly-created state and the input symbol; this will return a set of states.</li>
+<li>Apply the \(\varepsilon\)-closure to this set of states, possibly resulting in a new set.</li>
+</ul></li>
+<li>This set of NFA states will be a single state in the DFA.</li>
+</ul></li>
+<li>Each time we generate a new DFA state, we must apply step 2 to it. The process is complete when applying step 2 does not yield any new states.</li>
+<li>The finish states of the DFA are those which contain any of the finish states of the NFA.</li>
+</ol>
+
+<p><a href="https://www.youtube.com/watch?v=taClnxU-nao">video</a></p>
+
+<p>Here is a small example</p>
+
+<p><img src="dfa.png" style="width: 300px"></p>
+
+<p>the overall code is something like this</p>
+
+<div><pre class="line-numbers"><code class="language-python">for state in todo:
+    for input in state.paths():
+        new = closure(move(state, input))
+        if new not in todo:
+            todo.append(new)
+        finalGraph((state, input)) = new</code></pre></div>
+
+<p>What we did here was take state 1 and throw it into the \(epsilion\)-closure function to get the set of states that you can get to via a epsilion transition, this is just 1 in this case, a empty string can only result in the state staying the same as there is no epsilon path. </p>
+
+<p>so lets say <code>todo = [1]</code></p>
+
+<p>Now we go through all the possible input symbols and apply move after we remove 1 from the todo list.  </p>
+
+<p><code>move(1,a) -&gt; 2</code><br>
+as a input character a can take you to 2</p>
+
+<p><code>move(1,c) -&gt; (4,3)</code></p>
+
+<p>now we apply closure to these 2 and if we haven&#39;t done them yet, add them to the todo list. </p>
+
+<p><code>closure(2) -&gt; (2,1) // add to list</code><br>
+<code>closure(4) -&gt; (4,3)  // add to list</code></p>
+
+<p>Now just take the result of the closure of the moves and add them to the final graph. </p>
+
+<p><code>1 -- a --&gt; (2,1)</code><br>
+<code>1 -- c --&gt; (4,3)</code></p>
+
+<p>at this point the todo list is <code>[(2,1),(4,3)]</code> lets repeat</p>
+
+<p><code>move((2,1),a) --&gt; (2) --&gt; (2,1) //done</code><br>
+<code>move((2,1),b) --&gt; (3) --&gt; (3) // add</code><br>
+<code>move((2,1),c) --&gt; (4) --&gt; (4,3) //done</code></p>
+
+<p><code>(2,1) -- a --&gt; (2,1)</code><br>
+<code>(2,1) -- b --&gt; 3</code><br>
+<code>(2,1) -- c --&gt; (4,3)</code></p>
+
+<p>now we have <code>[(4,3),3]</code></p>
+
+<p><code>move((4,3),a) --&gt; 2 --&gt;(2,1) // done</code><br>
+<code>move((4,3),b) --&gt; none --&gt; none</code><br>
+<code>move((4,3),c) --&gt; (3) --&gt; (3) // done</code></p>
+
+<p><code>(4,3) -- a --&gt; (2,1)</code><br>
+<code>(4,3) -- b --&gt; None</code><br>
+<code>(4,3) -- c --&gt; (3)</code></p>
+
+<p>todo is <code>[3]</code></p>
+
+<p><code>move((3),a) --&gt; 2 --&gt; (2,1)</code><br>
+<code>move((3),b) --&gt; none</code><br>
+<code>move((3),c) --&gt; none</code></p>
+
+<p><code>(3) -- a --&gt; (2,1)</code><br>
+<code>(3) -- b --&gt; None</code><br>
+<code>(3) -- c --&gt; none</code></p>
+
+<p>and we are done!!</p>
+
+<h4 id="toc_32">Fun</h4>
+
+<p>You can understand the basis of how this works without even needing the mathematical proof, because the main functions we use are move and closure. Move is obvious is just telling us neighbours of a node but closure is just as obvious. a dfa is not allowed to have any empty string transitions, closure takes two nodes connected by a empty string and &quot;closes&quot; them, merging them into 1 state while maintaining relevant connections. </p>
+
+<h4 id="toc_33">Definition</h4>
+
+<p>given a original NFA with (Σ, S, T, F, s0)<br>
+The resultant DFA is:<br>
+• The alphabet: Σ<br>
+• The states: all states in our finalGraph<br>
+• The start state: ε-closure(s0)<br>
+• The accepting states: all states in DFAstates containing at least one accepting state from the original NFA<br>
+• The transitions: All the transitions in the final graph</p>
+
+<h2 id="toc_34">Minimising DFA Statements</h2>
+
+<hr>
+
+<p>This is just the process to take a DFA and minimise it down to it&#39;s simplest form so it can run faster and be represented with less complexity and space. </p>
+
+<h4 id="toc_35">Algorithm</h4>
+
+<p>Initially, let \(\Pi\) be the partition with the two groups:</p>
+
+<ol>
+<li>one is the set of all final states</li>
+<li>the other is the set of all non-final states</li>
+</ol>
+
+<p>Let \(\Pi_{new} = \Pi\)</p>
+
+<p>for each group G in \(\Pi_{new}\):<br>
+- Create subgroups from G that group together states with identical transitions to states within G.</p>
+
+<p>replace G in \(\Pi_{new}\) by the set of subgroups formed</p>
+
+<p>Begins with the most optimistic assumption</p>
+
+<p>observe below</p>
+
+<p><img src="min.png" style="width: 300px"></p>
+
+<p>the DFA is first split into 2 groups</p>
+
+<ol>
+<li>{A,D,E}</li>
+<li><p>{B,C}</p>
+
+<p>now for 1. A transitions into D with 0 and D transitions into D with 0 and E transitions into D with 0.</p></li>
+</ol>
+
+<p>for 2. B ans C both transition into C with 0.</p>
+
+<p>we now have 2 sub groups, ADE and BC. </p>
+
+<p>now ADE all transition into B with 1 and B and C both transition into E with 1. </p>
+
+<p>hence the final graph. </p>
+
+<h1 id="toc_36">Scanner Generators</h1>
+
+<h2 id="toc_37">Jflex</h2>
+
+<hr>
+
+<p>Jflex is a java generated scanner. What happens is a set of token specs via RE are taken in, a DFA is generated through some method and that can then be used as the actual scanner. </p>
+
+<p>This can generate any scanner given a arbitrary set of regex tokens. </p>
+
+<p>How jflex works is it takes in a spec in the form</p>
+
+<div><pre class="line-numbers"><code class="language-none">    user code
+    %%
+    Jflex directives
+    %%
+    regular expression rules</code></pre></div>
+
+<p>an example is</p>
+
+<div><pre class="line-numbers"><code class="language-none">    some user code
+    %%
+    LETTER=[A-Za-z_]
+    DIGIT=[0-9]
+    %%
+    &quot;if&quot;  { return new Token(Token.IF, &quot;if&quot;, pos); }
+    &quot;&lt;&quot;   { return new Token(Token.LT, &quot;&lt;&quot;, pos); }
+    &quot;&lt;=&quot;  { return new Token(Token.LE, &quot;&lt;=&quot;, pos); }
+    {LETTER}({LETTER}|{DIGIT})*
+         { return new Token(Token.ID, &quot;itsSpelling&quot;, pos); }</code></pre></div>
+
+<p>This matches as much as possible into 1 token and also will take the first match if in the list of token regexs you give multiple match with a given input. <br>
+so first we create a NFA</p>
+
+<p><img src="nfa_e.png" style="width: 300px"></p>
+
+<p>then we generate a DFA (note this is already minimal so we can skip that step)</p>
+
+<p><img src="minimal_state_dfa.png" style="width: 300px"></p>
+
+<p>Note you can represent every DFA as a transition table (refer to the video in the section above</p>
+
+<p>Note though these are usually spase as some will be empty and thus represent errors (you can compress these though, check the textbook for some techniques)</p>
+
+<p>Now what jflex does is actually SIMULATE a DFS through code without actually generating one. </p>
+
+<div><pre class="line-numbers"><code class="language-java"> state = initial_state
+  while (TRUE) {
+    next_state = T[state][current_char];
+    if (next_state == ERROR)  // cannot move any further
+      break;
+    state = next_state;
+    if (current_char == EOF)  // input exhausted
+      break;
+    current_char = getchar(); // fetch the next char
+  }
+  Backtrack to the most recent accepting state
+  if (such a state exists)
+    /* return the corresponding token
+       reset current_char to the first after the token
+*/ else
+    lexical_error(state);</code></pre></div>
+
+<h2 id="toc_38">Limitations of RE</h2>
+
+<hr>
+
+<ul>
+<li>Cannot “count”</li>
+<li>Cannot recognise palindromes (e.g., racecar &amp; rotator)</li>
+<li>The language of the balanced parentheses {(n)n |n􏰀1}
+is not a regular language and can&#39;t be encoded in RE
+
+<ul>
+<li>but this can be specified by a CFG (covered Week 3)</li>
+</ul></li>
+</ul>
+
+<h2 id="toc_39">Chomsky’s Hierarchy</h2>
+
+<hr>
+
+<p>Depending on the form of production<br>
+\(\alpha → \beta\)<br>
+four types of grammars (and accordingly, languages) are distinguished:</p>
+
+<p><img src="chomp.png" style="width: 500px"></p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.java=Prism.languages.extend("clike",{keyword:/\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/,number:/\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+(?:e[+-]?\d+)?[df]?\b/i,operator:{pattern:/(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,lookbehind:!0}}),Prism.languages.insertBefore("java","function",{annotation:{alias:"punctuation",pattern:/(^|[^.])@\w+/,lookbehind:!0}});
+</script>
+
+<script type="text/javascript">
+Prism.languages.python={"triple-quoted-string":{pattern:/"""[\s\S]+?"""|'''[\s\S]+?'''/,alias:"string"},comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0},string:/("|')(?:\\?.)*?\1/,"function":{pattern:/((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,lookbehind:!0},"class-name":{pattern:/(\bclass\s+)[a-z0-9_]+/i,lookbehind:!0},keyword:/\b(?:as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/,"boolean":/\b(?:True|False)\b/,number:/\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,operator:/[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.perl={comment:[{pattern:/(^\s*)=\w+[\s\S]*?=cut.*/m,lookbehind:!0},{pattern:/(^|[^\\$])#.*/,lookbehind:!0}],string:[/\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1/,/\b(?:q|qq|qx|qw)\s+([a-zA-Z0-9])(?:[^\\]|\\[\s\S])*?\1/,/\b(?:q|qq|qx|qw)\s*\((?:[^()\\]|\\[\s\S])*\)/,/\b(?:q|qq|qx|qw)\s*\{(?:[^{}\\]|\\[\s\S])*\}/,/\b(?:q|qq|qx|qw)\s*\[(?:[^[\]\\]|\\[\s\S])*\]/,/\b(?:q|qq|qx|qw)\s*<(?:[^<>\\]|\\[\s\S])*>/,/("|`)(?:[^\\]|\\[\s\S])*?\1/,/'(?:[^'\\\r\n]|\\.)*'/],regex:[/\b(?:m|qr)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1[msixpodualngc]*/,/\b(?:m|qr)\s+([a-zA-Z0-9])(?:[^\\]|\\.)*?\1[msixpodualngc]*/,/\b(?:m|qr)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngc]*/,/\b(?:m|qr)\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngc]*/,/\b(?:m|qr)\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngc]*/,/\b(?:m|qr)\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngc]*/,{pattern:/(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\2(?:[^\\]|\\[\s\S])*?\2[msixpodualngcer]*/,lookbehind:!0},{pattern:/(^|[^-]\b)(?:s|tr|y)\s+([a-zA-Z0-9])(?:[^\\]|\\[\s\S])*?\2(?:[^\\]|\\[\s\S])*?\2[msixpodualngcer]*/,lookbehind:!0},{pattern:/(^|[^-]\b)(?:s|tr|y)\s*\((?:[^()\\]|\\[\s\S])*\)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngcer]*/,lookbehind:!0},{pattern:/(^|[^-]\b)(?:s|tr|y)\s*\{(?:[^{}\\]|\\[\s\S])*\}\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngcer]*/,lookbehind:!0},{pattern:/(^|[^-]\b)(?:s|tr|y)\s*\[(?:[^[\]\\]|\\[\s\S])*\]\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngcer]*/,lookbehind:!0},{pattern:/(^|[^-]\b)(?:s|tr|y)\s*<(?:[^<>\\]|\\[\s\S])*>\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngcer]*/,lookbehind:!0},/\/(?:[^\/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b))/],variable:[/[&*$@%]\{\^[A-Z]+\}/,/[&*$@%]\^[A-Z_]/,/[&*$@%]#?(?=\{)/,/[&*$@%]#?((::)*'?(?!\d)[\w$]+)+(::)*/i,/[&*$@%]\d+/,/(?!%=)[$@%][!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/],filehandle:{pattern:/<(?![<=])\S*>|\b_\b/,alias:"symbol"},vstring:{pattern:/v\d+(\.\d+)*|\d+(\.\d+){2,}/,alias:"string"},"function":{pattern:/sub [a-z0-9_]+/i,inside:{keyword:/sub/}},keyword:/\b(any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|say|state|sub|switch|undef|unless|until|use|when|while)\b/,number:/\b-?(0x[\dA-Fa-f](_?[\dA-Fa-f])*|0b[01](_?[01])*|(\d(_?\d)*)?\.?\d(_?\d)*([Ee][+-]?\d+)?)\b/,operator:/-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b/,punctuation:/[{}[\];(),:]/};
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+<script type="text/x-mathjax-config">
+(function () {
+
+MathJax.Hub.Config({
+	'showProcessingMessages': false,
+	'messageStyle': 'none'
+});
+
+if (typeof MathJaxListener !== 'undefined') {
+	MathJax.Hub.Register.StartupHook('End', function () {
+		MathJaxListener.invokeCallbackForKey_('End');
+	});
+}
+
+})();
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>
