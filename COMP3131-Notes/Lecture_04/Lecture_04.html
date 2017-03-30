@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Lecture_04</title>
+
+
+<style type="text/css">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #fff;
+    background-color: #282a36;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
+a {
+    color: #59acf3;
+}
+a:hover {
+    color: #a7d8ff;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+	color: #ff4a14;
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #282a36;
+    color: #ff4a14;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+
+</style>
+
+<style type="text/css">
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Top-Down Parsing: Recursive-Descent</h1>
+
+<h2 id="toc_1">Lookahead Token(s)</h2>
+
+<hr>
+
+<p>The currently scanned token(s) in the input. In Recogniser.java, currentToken represents the lookahead token<br>
+For most programming languages, one token lookahead only.<br>
+Initially, the lookahead token is the leftmost token in the input.</p>
+
+<h2 id="toc_2">Top Down Parsing</h2>
+
+<hr>
+
+<h4 id="toc_3">Intro</h4>
+
+<p>This is the process of building the parse tree. <br>
+we start with the start symbol (i.e., the root) and grow towards the sentence being analysed (i.e., leaves).</p>
+
+<p>in general we can do this with just 1 lookahead token</p>
+
+<p>a top down parse will discover the leftmost derivation, basically the productions used in expanding the parse tree represent a leftmost derivation</p>
+
+<h4 id="toc_4">Predictive (Non-Backtracking) Top-Down Parsing</h4>
+
+<p>To expand a nonterminal, the parser always <code>predict</code> (choose) the right alternative for the nonterminal by looking at the lookahead symbol only.<br>
+Note this is why we call it the lookahead symbol, it&#39;s been read from the file but hasn&#39;t been added to the tree and hence is not the current symbol. </p>
+
+<p>Flow-of-control constructs, with their distinguishing keywords, are detectable this way, e.g. in the VC grammar:</p>
+
+<div><pre class="line-numbers"><code class="language-none">⟨stmt⟩ → ⟨compound-stmt⟩
+    | if ”(” ⟨expr⟩ ”)” (ELSE ⟨stmt⟩)?
+    | break ”;”
+    | continue ”;”
+    | ...</code></pre></div>
+
+<p>Prediction happens before the actual match begins! the code can look at the lookahead symbol and be able to tell which of the multiple cases to go to i.e it can see if the next symbol is a if or a break or a continue. </p>
+
+<h4 id="toc_5">Example</h4>
+
+<p>which of the Two Alternatives on S to Choose?</p>
+
+<div><pre class="line-numbers"><code class="language-none">S → aA|bB
+A → ···
+B → ···
+
+lookahead token: a</code></pre></div>
+
+<p>The leftmost derivation:<br>
+<code>S -&gt; lm aA</code><br>
+Thus we select the first alternative aA</p>
+
+<p>How about here?</p>
+
+<div><pre class="line-numbers"><code class="language-none">S → Ab|Bc
+A → Df | CA
+B → gA | e
+C → dC | c
+D → h | i
+
+sentence: gchfc</code></pre></div>
+
+<p>We follow the following sequence</p>
+
+<div><pre class="line-numbers"><code class="language-none">S -&gt; Bc Bc
+B -&gt; gA gAc
+A -&gt; CA gCAc
+C -&gt; c      gcAc
+A -&gt; Df gcDfc
+D -&gt; h      gchfc</code></pre></div>
+
+<p>To do this though notice that we need a little more information then just the next token. Usually what we do is look at First Sets</p>
+
+<h2 id="toc_6">First Sets</h2>
+
+<hr>
+
+<p>All possible leftmost derivations, i.e what would happen if you reduced the left hand side as much as possible. </p>
+
+<p><img src="raw/D_1.png" style="width: 400px"></p>
+
+<p>This lets us look at all the possible ends of something like Bc {e,g} compares to Ab {c,d,h,i} and this of course we pick Bc because g is the next token. </p>
+
+<h4 id="toc_7">Formal Defintion</h4>
+
+<p>\(First(\alpha)\) : The set of all terminals that can begin any strings derived from α. Basically if we were to look at all possible derivations of \(\alpha\) the First would be the set of all the terminals that appeared at the start of the strings. </p>
+
+<p>\(First(\alpha)\) can also include \(\epsilon\) if it is a valid end state for a given \(\alpha\)</p>
+
+<h4 id="toc_8">Nullable Nonterminals</h4>
+
+<p>A nonterminal A is nullable if it can be derived to a \(\epsilon\).</p>
+
+<h4 id="toc_9">A Procedure to Compute First(α)</h4>
+
+<p>The simple explanation:</p>
+
+<p>We want to be able to grab the leftmost terminal symbols for any string right? so the basic equation for a input sentence s is</p>
+
+<div><pre class="line-numbers"><code class="language-python">def first(s):
+    result = emptySet()
+    # empty string input is empty string output
+    if len(s) == 1 and s == epsilon:
+        result.add(epsilon)
+    # if we have a non terminal descend into all branches
+    if len(s) == 1 and s is nonterminal:
+        # i.e if s -&gt; es|b go through first(es) + first(b)
+        for e in s.getOptions():
+            setUnion(result, first(e))
+    # if we have a string just decend into all symbols 
+    # up to and including the the first non
+    # terminal, i.e Keep searching until you get a 
+    # symbol that gives you a definite non epsilon end point. 
+    if len(s) &gt; 1:
+        # i.e if s is ABcd go though A then B then ...
+        for e in s.split():
+            if e.isNullable() == False:
+                result.add(First(e))
+                break
+            result.add(First(e))
+    return result</code></pre></div>
+
+<p>The formal explanation:</p>
+
+<p>We have two cases, in the first case α is a single symbol or \(\epsilon\), Here we can do this</p>
+
+<div><pre class="line-numbers"><code class="language-none">if α is a terminal a:
+    First(α) = First(a) = {a}
+elif α is epsilon:
+ First(α) = First(epsilon) = {epsilon}
+elif α is a nonterminal and α→ β1 |β2 |β3 | ···:
+    First(α) = ∪kFirst(βk)</code></pre></div>
+
+<p>This makes a lot of sense, if the have nothing we return nothing and if we have just 1 terminal then that is the obvious first. <br>
+if we have multiple options basically decend into each one and grab the first non nullable character that pops out!</p>
+
+<p>For the Second case we have α = X1X2 ···Xn, i.e a combination of symbols. Here we basically just travel along until we reach something that isn&#39;t nullable which gives us a definite end point. <br>
+We add in the epsilon as a option obviously if the entire set can possibly evaluate to epsilon. </p>
+
+<div><pre class="line-numbers"><code class="language-none">if X1X2 . . . Xi is nullable but Xi+1 is not:
+    # add everything up to and including the first non nullable symbol
+    First(α) = First(X1) ∪ First(X2) ∪ · · · ∪ First(Xi+1)
+if α is nullable:
+    Add epsilon to First(α) </code></pre></div>
+
+<h4 id="toc_10">Example</h4>
+
+<p>Given the grammar </p>
+
+<div><pre class="line-numbers"><code class="language-none">S → ABCd
+A → e|f|epsilon
+B → g|h|epsilon
+C → p|q</code></pre></div>
+
+<p>find First(ABCd).</p>
+
+<p>Now first of all ABCd is a combination of symbols so we go to case 2.</p>
+
+<p>First(A) + First(B) + First(C)</p>
+
+<p>as C is the first non nullable symbol. </p>
+
+<p>Now to evaluate these we go to case 1. </p>
+
+<p>if \(\alpha\) is a non terminal, the First of it is the union of all it&#39;s possible productions. </p>
+
+<p>i.e First(A) = {e,f}<br>
+First(B) = {g,h}<br>
+First(C) = {p,q}</p>
+
+<p>Note that we do not add in epsilon in this case as ABCd doesn&#39;t evaulute to \(\epsilon*\)</p>
+
+<p>but in this case</p>
+
+<div><pre class="line-numbers"><code class="language-none">S → ABC
+A → e|f|epsilon
+B → g|h|epsilon
+C → p|q|epsilon</code></pre></div>
+
+<p>First(ABC) = {e,f,g,h,p,q,\(\epsilon\)}</p>
+
+<h4 id="toc_11">Linking it back</h4>
+
+<div><pre class="line-numbers"><code class="language-none">S → Ab|Bc
+A → Df | CA
+B → gA | e
+C → dC | c
+D → h | i
+
+sentence: gchfc</code></pre></div>
+
+<p>now First(Ab) is First(A) as A is not nullable. </p>
+
+<p>First(A) = First(Df) + First(CA)<br>
+remember depend through all the options and get the first non-nullable from any string of multiple symbols. </p>
+
+<p>First(A) = First(D) + First(C)<br>
+First(A) = {h,i,d,c}</p>
+
+<p>You can do the same thing with First(Bc) and get {e,g}<br>
+thus allowing us to pick Bc because it contains the g terminal. </p>
+
+<h2 id="toc_12">The Expression Grammar</h2>
+
+<hr>
+
+<p>Basically a form of grammar that does not have any ambiguity, note below</p>
+
+<p><img src="raw/D_2.png" style="width: 400px"></p>
+
+<p>Taking out recursion gives us a more defined grammar. The choice operator (|) here selects the first match, while it is ambiguous in CFG</p>
+
+<p>btw this makes more sense if you remember the E is expression and T is term and F is factor. </p>
+
+<h2 id="toc_13">Follow Sets</h2>
+
+<hr>
+
+<p>First of all Follow sets tell us the series of symbols that Follow a given nonterminal A. Why do we care?</p>
+
+<p>First sets do not tell us when to apply A→α such that α=⇒\(\epsilon\)* (the important special case is A→\(\epsilon\))</p>
+
+<p>Basically First sets can tell us what to expand to get a symbol we need, i.e if First(E) gives us a gA and the lookahead symbol is a g perfect! <br>
+But it can not tell us how to get rid of something. FOLLOW covers the possibility that the leftmost non-terminal can disappear, so that the lookahead symbol is not actually a part of what we&#39;re presently expanding, but rather the beginning of the next construct.</p>
+
+<p>take this example<br>
+<code><br>
+S -&gt; aAb<br>
+A -&gt; a | &lt;epsilon&gt;<br>
+</code><br>
+consider parsing the string &#39;ab&#39;<br>
+we go S-&gt;aAb then A-&gt;epsilon</p>
+
+<p>when we have aAb our logic would go &quot;alright we have a, the lookahead symbol is now b, how can we convert A into b&quot; and would crash. BUT if we said &quot;alright well Follow(A) = {b} lets just have A go to epsilon to get our lookahead token in a round about way&quot;</p>
+
+<p>Follow sets constructed only for nonterminals and by convention, assume every input is terminated by a special end marker (i.e., the EOF marker), denoted by <code>$</code></p>
+
+<p>Follow sets do not contain \(\epsilon\)</p>
+
+<h4 id="toc_14">Defintion</h4>
+
+<p>For a nonterminal A, Follow(A) is the set of terminals that can appear immediately to the right of A in some sentential form</p>
+
+<p>formally that is <br>
+\[ Follow(A) = \{a | S\rightarrow * ···Aa···\}\]<br>
+where S is the start symbol of the grammar.</p>
+
+<h4 id="toc_15">Algorithm</h4>
+
+<div><pre class="line-numbers"><code class="language-python">def follow(A):
+    result = emptySet()
+    if A.isStartSymbol():
+        result.add($)
+    for transformation in grammer:
+        # Here we look for a transformation in the 
+        # form B → αAβ
+        if transformation.rightSide.contains(A):
+            # add in the First(β) but without epislons
+            toAdd = First(transformation.rightSide.beta)
+            toAdd.removeElemFromSet(epsilon)
+            results.add(toAdd)
+            # if β is epsilon* then the previous step
+            # did nothing, here chuck in Follow(B) because
+            # if beta is empty string, there is no right terminal
+            # so descend and keep looking
+            if transformation.rightSide.beta.isOneOrMoreEpislons():
+                results.add(follow(transformation.leftSide))
+    return result</code></pre></div>
+
+<h4 id="toc_16">Example</h4>
+
+<p>recall grammar 1</p>
+
+<div><pre class="line-numbers"><code class="language-none">E → E+T | E−T |T
+T → T∗F | T/F | F
+F → INT | (E)</code></pre></div>
+
+<p>get Follow(E).</p>
+
+<p>So E is a start symbol, so add <code>$</code> to our set <code>{$}</code><br>
+Now E is on the right of the first and third transformations. </p>
+
+<div><pre class="line-numbers"><code class="language-none">E → E+T | E−T |T
+F → INT | (E)</code></pre></div>
+
+<p>for the 3rd one we add in the First(&#39;)&#39;) which is just gives us <code>{),$}</code></p>
+
+<p>for the second one we get First(+) and First(-) giving us our final set of</p>
+
+<p><code>{+,-,),$}</code></p>
+
+<p>this tells us all the valid terminal symbols which can FOLLOW e. <br>
+If it&#39;s a start symbol then it can be followed by nothing (<code>$</code>) and then we go through and find all other instances. </p>
+
+<h2 id="toc_17">Select Set</h2>
+
+<hr>
+
+<p>there is one Select set for every production in the grammar</p>
+
+<p>It is in essence it just combines our rules for First and Follow into one set so for any given transformation we have all of our possible options in one set. Remember that in sets with epsilon terminals sometimes we need to look at the follow set for a symbol not just the first set. <br>
+In the case there are no epsilons the first is more then enough because the follow set really only kicks in when we have the option to destroy/vanish a symbol. </p>
+
+<h4 id="toc_18">Defintion</h4>
+
+<p>The select set for a production \(A\rightarrow \alpha\):</p>
+
+<ol>
+<li>If \(epsilon\) is in First(α), then
+
+<ul>
+<li>Select(A→\(\epsilon\)) = (First(\(\alpha\)) − {\(\epsilon\)}) \(\cup\) Follow(A)</li>
+</ul></li>
+<li>Otherwise:
+
+<ul>
+<li>Select(A→\(\epsilon\)) = First(\(\epsilon\))</li>
+</ul></li>
+</ol>
+
+<p>This assumes that the production you give it to be used in some derivation. Thus, the Select not needed if A has has one alternative i.e A -&gt; a this is obvious, we don&#39;t need to make a decision her so a select set is useless. </p>
+
+<h2 id="toc_19">Predictive Recursive Descent</h2>
+
+<hr>
+
+<p>Predictive (or non-backtracking): the parser always predicts the right production to use at every derivation step</p>
+
+<p>Recursive, a parsing method may call itself recursively either directly or indirectly. i.e A -&gt; A+A</p>
+
+<p>Descent: the parser builds the parse tree (or AST) by descending through it as it parses the program. In this case we think of the parse tree as already existing implicitly in the code and as we read through it we traverse this imaginary tree. </p>
+
+<h4 id="toc_20">Basis of writing one</h4>
+
+<p>The variable currentToken is the lookahead token, which is initialised to the leftmost token in the program</p>
+
+<h4 id="toc_21">Match</h4>
+
+<p>A method, called match, for matching the tokens at production right-hand sides, This just handles incorrect format errors. i.e <code>int =</code> instead of <code>int x =</code> would trigger a error at <code>=</code> as it was expecting a token of type <code>&lt;id&gt;</code></p>
+
+<div><pre class="line-numbers"><code class="language-java">void match(int tokenExpected) {
+    if (currentToken.kind == tokenExpected) {
+        // Progress
+        currentToken = scanner.getToken();
+    } else {
+        error: &quot;tokenExpected&quot; expected but &quot;currentToken&quot; found
+    }
+}</code></pre></div>
+
+<h4 id="toc_22">Nonterminal parsing</h4>
+
+<p>A method, called parseA, for every nonterminal</p>
+
+<p>First how can we parse a non terminal A in the form<br>
+of \(A\rightarrow a_{1}|a_{2}|...|a_{n}\)</p>
+
+<p>Basically we go through every possible options \(a_1\) to \(a_n\) and <br>
+find which one out currentToken matches with. <br>
+i.e if our next token was &lt;expr&gt; and we had \(A \rightarrow &lt;expr&gt; | &lt;fact&gt;\) the parse code would match the expr and parse that not the fact. </p>
+
+<div><pre class="line-numbers"><code class="language-java">void parseA() {
+    switch (currentToken.kind) {
+        cases in Select(A→α1)
+            parse α1
+            break;
+            ···
+        cases in Select(A→αn)
+            parse αn
+            break;
+        default:
+            syntacticError(...);
+            break;
+    }
+}</code></pre></div>
+
+<p>Of course if we have \(A\rightarrow \alpha\) then we just do</p>
+
+<div><pre class="line-numbers"><code class="language-java">void parseA() {
+    parse α
+}</code></pre></div>
+
+<p>note that A is variable here it could be parseExpr or parseDick</p>
+
+<h4 id="toc_23">String parsing</h4>
+
+<p>Ok now comes the fun part, parsing multisymbol strings. </p>
+
+<p>Suppose \(\alpha _i = aABbC\), where A, B and C are nonterminals</p>
+
+<p>• parse \(\alpha _{i}\) implemented as:</p>
+
+<div><pre class="line-numbers"><code class="language-java">match(&quot;a&quot;);
+parseA();
+parseB();
+match(&quot;b&quot;);
+parseC();</code></pre></div>
+
+<p>If \(\alpha _{i} = \epsilon\), then parse \(\alpha _{i}\) implemented as:</p>
+
+<div><pre class="line-numbers"><code class="language-none">/* empty statement */</code></pre></div>
+
+<p>This does mean that we need a parse statement for every one of thse</p>
+
+<div><pre class="line-numbers"><code class="language-java">void parseWhileStmt() throws SyntaxError {
+   match(Token.WHILE);
+   match(Token.LPAREN);
+   parseExpr();
+    match(Token.RPAREN);
+    parseStmt();
+}</code></pre></div>
+
+<h4 id="toc_24">Managing the start symbol</h4>
+
+<p><img src="raw/D_3.png" style="width: 400px"></p>
+
+<h1 id="toc_25">LL(1)</h1>
+
+<h2 id="toc_26">Intro</h2>
+
+<hr>
+
+<p><img src="raw/D_4.png" style="width: 400px"></p>
+
+<p>It is called LL because It parses the input from <code>L</code>eft to right, performing <code>L</code>eftmost derivation of the sentence.</p>
+
+<h2 id="toc_27">Grammer</h2>
+
+<hr>
+
+<p>A grammar is LL(1) if for every nonterminal of the form<br>
+\[A \rightarrow \alpha_{1}|···|\alpha_{n}\]<br>
+the select sets are pairwise disjoint, i.e.:<br>
+\[Select(A→\alpha_{i}) \cap Select(A→\alpha_{j}) = ∅\]<br>
+for all i and j such that i != j.</p>
+
+<p>Basically for any given non terminal every derivation must only appear once. </p>
+
+<p>This implies there can be at most one nullable alternative as every derivation has a unique Select set and thus path to it. </p>
+
+<p>When we have this we can have a parse function with only 1 nullable alternative in the transformation. Lets say that \(\alpha_{n}\) is the only nullable alternative. In this case we can set every other alpha simply as \(Select(A\rightarrow \alpha_{i}) = First(\alpha_{i}) \) because remember we only really case about the Follow sets in relation to nonterminals that can me eliminated. </p>
+
+<p>This simplifies the code significantly. </p>
+
+<p><img src="raw/D_5.png" style="width: 400px"></p>
+
+<h4 id="toc_28">Left-Recursive Grammars Are Not LL(1)</h4>
+
+<p>Lets take the left recursive grammar from slide 213 and try and form a parsing function for that</p>
+
+<div><pre class="line-numbers"><code class="language-none">E → E+T | E−T | T
+T → T∗F | T/F | F
+F → INT | (E)</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-java">void parseE() {
+switch (currentToken.kind) {
+    case Token.INT: case Token.LPAREN:
+        parseE();
+        break;
+    case Token.INT: case Token.LPAREN:
+      parseE();
+      match(Token.PLUS);
+      parseT();
+      break;
+    case Token.INT: case Token.LPAREN:
+      parseE();
+      match(Token.MINUS);
+      parseT();
+      break;
+    default:
+      syntacticError(...);
+break;
+￼￼￼}
+} /* this does not work */
+</code></pre></div>
+
+<p><code>I can&#39;t say for sure but i think this code is wrong given all the cases are the same.</code></p>
+
+<p>This doesn&#39;t work because it goes into a infinite loop, note how in the first case there is no match but a recursive call to parseE()</p>
+
+<p>so what we generally do is remove recursion from the grammar</p>
+
+<p>Just for the test note that <code>Non-Direct Left Recursion</code> is just something like this</p>
+
+<p>\(A \rightarrow B\alpha \)<br>
+\(B \rightarrow A\beta \)</p>
+
+<h4 id="toc_29">Grammar Rewriting</h4>
+
+<p>This is a method for removing left recursion from a grammar </p>
+
+<p>Lets say given the following grammar</p>
+
+<p>\(A → \alpha\)<br>
+\(A → A\beta_{1}|A\beta_{2}\)</p>
+
+<p>We can transform into this to remove the left recursion on the second transformation. </p>
+
+<p>\(A → \alpha A′\)<br>
+\(A′ → \beta_{1}A′|\beta_{2}A′|\epsilon\)</p>
+
+<p>Note the use of a intermediate to convert this into a form that uses RIGHT recursion instead, i.e you can parse but after a match to make sure a loop doesn&#39;t hit. </p>
+
+<h4 id="toc_30">Eliminating Direct Left Recursion Using Regular Operators</h4>
+
+<p>We could also take the above defined grammar and convert it into</p>
+
+<p>\(A → \alpha(\beta_{1}|\beta_{2})*\)</p>
+
+<p>This also eliminates left recursion. </p>
+
+<p>Here we basically just substituted A for alpha in the second transformation. </p>
+
+<blockquote>
+<p>This is Recommended for Ass 2</p>
+</blockquote>
+
+<p><img src="raw/D_6.png" style="width: 400px"></p>
+
+<h4 id="toc_31">Grammars with Common Prefixes Are Not LL(1)</h4>
+
+<p>Basically if you have two cases both of which rely on the same prefix (i.e common prefix) then the code becomes sorta non-deterministic. </p>
+
+<p><img src="raw/D_7.png" style="width: 400px"></p>
+
+<h4 id="toc_32">Left Factoring</h4>
+
+<p>Just like we have ways to convert grammars with left recursion into ones without, we can deal with common prefixes. </p>
+
+<p>Given</p>
+
+<p>\(A → \alpha \beta_{1}|\alpha \beta_{2}\)<br>
+\(A→\gamma\)</p>
+
+<p>we can get</p>
+
+<p>\(A → \alpha A′\)<br>
+\(A→\gamma\)<br>
+\(A′→ \beta_{1}|\beta_{2}\)</p>
+
+<p>All we did here was <code>left factor</code> the grammar i.e make transformation 1 into \(A \rightarrow \alpha(\beta_{1}|\beta_{2})\) and then replace that with a intermediate. </p>
+
+<p>Here is an example</p>
+
+<p><img src="raw/D_8.png" style="width: 400px"></p>
+
+<h4 id="toc_33">Choice Operator</h4>
+
+<p>This is the recommended way to do ass 2 which is match the common prefix first THEN use the choice operator. </p>
+
+<p>\(A \rightarrow \alpha(\beta_{1}|\beta_{2})\)</p>
+
+<p>Here is an example</p>
+
+<p><img src="raw/D_9.png" style="width: 400px"></p>
+
+<h4 id="toc_34">Coding parse in the presence of regular operators</h4>
+
+<p><img src="raw/D_10.png" style="width: 400px"></p>
+
+<h2 id="toc_35">LL(k)</h2>
+
+<hr>
+
+<p>A grammar is LL(k) if it can be parsed deterministically using k tokens of lookahead. hence LL(1) only needs 1 lookahead token. </p>
+
+<h2 id="toc_36">Ass 2</h2>
+
+<hr>
+
+<p>• A subset of VC already implemented for you<br>
+• For expressions, you need to eliminate left-recursion on<br>
+several nonterminals as illustrated in Slide 242<br>
+• You also need to eliminate some common prefixes (e.g.,<br>
+one for ⟨primary-expr⟩) as illustrated in Slide 247.<br>
+• A simple left-factoring can fix the LL(2) construct:<br>
+⟨prog⟩ → ( ⟨func-decl⟩ | ⟨var-decl⟩ )∗<br>
+• Everything else should be quite straightforward</p>
+
+<h2 id="toc_37">General cases</h2>
+
+<hr>
+
+<p>These are just extra formal definitions of how to do the grammar rewriting / use regular operators. Can be found in the slides, i found them sorta not useful so i left them out of this already long af lecture. </p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.java=Prism.languages.extend("clike",{keyword:/\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/,number:/\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+(?:e[+-]?\d+)?[df]?\b/i,operator:{pattern:/(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,lookbehind:!0}}),Prism.languages.insertBefore("java","function",{annotation:{alias:"punctuation",pattern:/(^|[^.])@\w+/,lookbehind:!0}});
+</script>
+
+<script type="text/javascript">
+Prism.languages.python={"triple-quoted-string":{pattern:/"""[\s\S]+?"""|'''[\s\S]+?'''/,alias:"string"},comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0},string:/("|')(?:\\?.)*?\1/,"function":{pattern:/((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,lookbehind:!0},"class-name":{pattern:/(\bclass\s+)[a-z0-9_]+/i,lookbehind:!0},keyword:/\b(?:as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/,"boolean":/\b(?:True|False)\b/,number:/\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,operator:/[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+<script type="text/x-mathjax-config">
+(function () {
+
+MathJax.Hub.Config({
+	'showProcessingMessages': false,
+	'messageStyle': 'none'
+});
+
+if (typeof MathJaxListener !== 'undefined') {
+	MathJax.Hub.Register.StartupHook('End', function () {
+		MathJaxListener.invokeCallbackForKey_('End');
+	});
+}
+
+})();
+</script>
+
+<script type="text/javascript" src="raw/https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>

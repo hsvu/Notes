@@ -47,7 +47,7 @@ a:hover {
     text-decoration: none;
 }
 a img {
-    border: none;
+   raw/ border: none;
 }
 p {
     margin-bottom: 9px;
@@ -457,11 +457,11 @@ This language now defines the set of M68K, MIPS, Pentium instructions etc. </p>
 
 <p>Here is a quick table to outline some of these transformations on two languages L and M</p>
 
-<p><img src="L_trans.png" style="width: 500px"></p>
+<p><img src="raw/L_trans.png" style="width: 500px"></p>
 
 <p>This may seem hard to visualise, take a look at the example first</p>
 
-<p><img src="L_trans_E.png" style="width: 500px"></p>
+<p><img src="raw/L_trans_E.png" style="width: 500px"></p>
 
 <p>The union of two languages is just a combination of all the symbols in both. </p>
 
@@ -605,7 +605,7 @@ floatLiteral:   /digit* fraction exponent? | digit+. | digit+.?exponent/</code><
 
 <p>We can represent finite state automata (FA) with Transition graphs. Details below</p>
 
-<p><img src="trans_graph.png" style="width: 300px"></p>
+<p><img src="raw/trans_graph.png" style="width: 300px"></p>
 
 <p>Note that a FA will only accept a string x if there is some path on the machine which fits in with the string. I.e if x was hello there must be some path in the machine that starts with h at a valid start state and transitions legally to a end state with o.</p>
 
@@ -613,7 +613,7 @@ floatLiteral:   /digit* fraction exponent? | digit+. | digit+.?exponent/</code><
 
 <hr>
 
-<p><img src="trans_graph_E.png" style="width: 300px"></p>
+<p><img src="raw/trans_graph_E.png" style="width: 300px"></p>
 
 <p>This state will accept <code>strings of 0 and 1 with an odd number of 1&#39;s</code></p>
 
@@ -705,13 +705,13 @@ the cases in the definition of REs and important means that if a symbol occurs s
 
 <h4 id="toc_26">Inductive base</h4>
 
-<p><img src="base.png" style="width: 300px"></p>
+<p><img src="raw/base.png" style="width: 300px"></p>
 
 <h4 id="toc_27">Inductive step</h4>
 
 <p>suppose N(r) and N(s) are NFAs for REs r and s.</p>
 
-<p><img src="thomas.png" style="width: 500px"></p>
+<p><img src="raw/thomas.png" style="width: 500px"></p>
 
 <p>note that <code>r|s</code> branches off into two NFA&#39;s. Also note that you can take a epsilon path without taking in another token. great for looping. </p>
 
@@ -733,7 +733,7 @@ the cases in the definition of REs and important means that if a symbol occurs s
 
 <p>and as we know *&#39;s are represented with 4 states, something like this</p>
 
-<p><img src="step1.png" style="width: 300px"></p>
+<p><img src="raw/step1.png" style="width: 300px"></p>
 
 <p>Where you can go from one state to the next then check if you are done and if not keep looping. There is also of course the option to skip as this is a * not a +.</p>
 
@@ -741,7 +741,7 @@ the cases in the definition of REs and important means that if a symbol occurs s
 
 <p>0* is represented as </p>
 
-<p><img src="step2.png" style="width: 300px"></p>
+<p><img src="raw/step2.png" style="width: 300px"></p>
 
 <p>We enter in, and we can either skip if there is no 0 or register the 0 as many times as there is one. Once it&#39;s done we go to the terminal state. </p>
 
@@ -750,7 +750,7 @@ the cases in the definition of REs and important means that if a symbol occurs s
 <p>so we start the loop, either branch into 0 or 1 -&gt; 0* -&gt; 1 and then at the end of both loop back and repeat the branch. <br>
 Thus we get this at the end</p>
 
-<p><img src="final.png" style="width: 500px"></p>
+<p><img src="raw/final.png" style="width: 500px"></p>
 
 <h2 id="toc_29">Subset construction NFA to DFA</h2>
 
@@ -815,7 +815,7 @@ Note that T is a set of NFA states and s is a single NFA state</p>
 
 <p>Here is a small example</p>
 
-<p><img src="dfa.png" style="width: 300px"></p>
+<p><img src="raw/dfa.png" style="width: 300px"></p>
 
 <p>the overall code is something like this</p>
 
@@ -919,7 +919,7 @@ The resultant DFA is:<br>
 
 <p>observe below</p>
 
-<p><img src="min.png" style="width: 300px"></p>
+<p><img src="raw/min.png" style="width: 300px"></p>
 
 <p>the DFA is first split into 2 groups</p>
 
@@ -972,11 +972,11 @@ The resultant DFA is:<br>
 <p>This matches as much as possible into 1 token and also will take the first match if in the list of token regexs you give multiple match with a given input. <br>
 so first we create a NFA</p>
 
-<p><img src="nfa_e.png" style="width: 300px"></p>
+<p><img src="raw/nfa_e.png" style="width: 300px"></p>
 
 <p>then we generate a DFA (note this is already minimal so we can skip that step)</p>
 
-<p><img src="minimal_state_dfa.png" style="width: 300px"></p>
+<p><img src="raw/minimal_state_dfa.png" style="width: 300px"></p>
 
 <p>Note you can represent every DFA as a transition table (refer to the video in the section above</p>
 
@@ -1024,7 +1024,7 @@ is not a regular language and can&#39;t be encoded in RE
 \(\alpha → \beta\)<br>
 four types of grammars (and accordingly, languages) are distinguished:</p>
 
-<p><img src="chomp.png" style="width: 500px"></p>
+<p><img src="raw/chomp.png" style="width: 500px"></p>
 
 
 

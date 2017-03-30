@@ -47,7 +47,7 @@ a:hover {
     text-decoration: none;
 }
 a img {
-    border: none;
+   raw/ border: none;
 }
 p {
     margin-bottom: 9px;
@@ -419,7 +419,7 @@ This then goes through the Semantic analyser to produce a decorated tree. At thi
 Immediate code generator creates the IR (Intermediate Represetnation) which can then be fed into code optimization and code generators (out of the scope of this course lmao)<br>
 Note that the decorates AST can be passed directly into the code optimization stage. </p>
 
-<p><img src="typ_struc.png" style="width: 500px; height: 400px"></p>
+<p><img src="raw/typ_struc.png" style="width: 500px; height: 400px"></p>
 
 <h4 id="toc_4">Examples</h4>
 
@@ -427,7 +427,7 @@ Note that the decorates AST can be passed directly into the code optimization st
 
 <p>Here you should note that the decorated tree simply adds in the step to convert the int literal to a float because all values in this register based machines are floats. </p>
 
-<p><img src="E_1_1.png" style="width: 500px; height: 400px"></p>
+<p><img src="raw/E_1_1.png" style="width: 500px; height: 400px"></p>
 
 <p>Now we can move this tree into code form by shifting it first into a IR</p>
 
@@ -452,7 +452,7 @@ MOVF R1, position</code></pre></div>
 
 <p>Take a look at this example for the java compiler</p>
 
-<p><img src="E_2_1.png"  style="width: 300px; height: 400px"></p>
+<p><img src="raw/E_2_1.png"  style="width: 300px; height: 400px"></p>
 
 <p>Here we have assignment expressions (<code>AssExp</code> lol) which splits up the expression into a left side and right side. I.e left = right or <code>position = initial + rate * 60</code><br>
 This is then split into a simple variable called position to the left and a binary expression to the right. </p>
@@ -468,7 +468,7 @@ Note the need to know what variabels are simple because in java sometimes variab
 <p>THe idea is that multiple different languages can be compiled into the same IR using multiple front ends. <br>
 Once in this form you can use generic IR optimization tools and then feed this ir into different back ends depending on the system</p>
 
-<p><img src="D_1.png" style="width: 300px; height: 200px"></p>
+<p><img src="raw/D_1.png" style="width: 300px; height: 200px"></p>
 
 <p>This means we can simplify retargeting using this &quot;everybody gets the same IR&quot; thing</p>
 
@@ -617,7 +617,7 @@ a. you could crash right here but it&#39;s more useful to recover what you can a
 
 <hr>
 
-<p><img src="D_2.png" style="width: 500px; 500px;"></p>
+<p><img src="raw/D_2.png" style="width: 500px; 500px;"></p>
 
 <p>Due to this structure usually the scanner runs as a sub routine within the parser</p>
 

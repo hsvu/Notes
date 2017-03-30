@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>lecture_03</title>
+
+
+<style type="text/css">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #fff;
+    background-color: #282a36;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
+a {
+    color: #59acf3;
+}
+a:hover {
+    color: #a7d8ff;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+	color: #ff4a14;
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #282a36;
+    color: #ff4a14;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+
+</style>
+
+<style type="text/css">
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Syntax And Semantics</h1>
+
+<h2 id="toc_1">Defintion</h2>
+
+<hr>
+
+<p>Syntax is the t he form or structure of English sentences, there isnNo concern with the meaning of English sentences. <br>
+<code>john ate the apple</code> vs <code>apple ate the john</code></p>
+
+<p>the english grammar defines how english is put together and hence defines the syntax. </p>
+
+<p>Semantics is the meaning of English sentences, which can be defined by a dictionary or more broadly humans in general.</p>
+
+<h2 id="toc_2">Semantics</h2>
+
+<hr>
+
+<p>For programming languages this can be split into two parts</p>
+
+<h4 id="toc_3">Static Semantics</h4>
+
+<p>Context-sensitive restrictions enforced at compile-time stuff like </p>
+
+<div><pre class="line-numbers"><code class="language-c">// All identifiers declared before used
+int c;
+c = 0;
+
+// Assignment must be type-compatible
+c = 6; //rather then 
+c=&quot;hi&quot;;
+
+//Operands must be type-compatible with operators
+5 + &quot;hi&quot; - 6.7
+
+//Methods called with the proper number of arguments
+printf(&quot;hi&quot;);</code></pre></div>
+
+<h4 id="toc_4">Run Time Semantics</h4>
+
+<p>What the program does or computes, i.e the meaning of a program or what happens when it is executed</p>
+
+<p>Is specified by code generation routines.</p>
+
+<h1 id="toc_5">Grammer / CFG</h1>
+
+<h2 id="toc_6">Why?</h2>
+
+<hr>
+
+<p>we use grammars as a way to give a generic language a precise and easy-to-understand syntactic specification. </p>
+
+<p>Because it is a defined structure we can add to it over time to extend a language or to remove obsolete features without have to make large changes to the compiler code base. </p>
+
+<p>Furthermore because of grammars we can now create language specifications and in turn languages incredibly quickly. </p>
+
+<p>In 1950s, the first FORTRAN took 18 man-years, Now, a compiler written can be written by a student in a semester. </p>
+
+<p>In addition they also allow for syntax-directed translation, covered more later but in essence allows us to skip everything after the parser (where the AST is generated)</p>
+
+<p>You just tokenise and the parser will create the bytecode. This is impossible without a standard set out way to define language semantics. </p>
+
+<h2 id="toc_7">Define CFG</h2>
+
+<hr>
+
+<p>Context free grammar is one of the ways we can define a languages syntax. It&#39;s not as powerful as more complex context-sensitive grammars and phrase-structure grammars but is Simple, widely used, and sufficient for most purposes. </p>
+
+<p>You can also define a languages grammer via a Regular grammars (i.e., regular expressions) but without the extra info defined in a CFG they are much less powerful, limited to smaller less robust languages. </p>
+
+<p>In this course we use both CFG and RG. </p>
+
+<h2 id="toc_8">Formal Definition of CFG</h2>
+
+<hr>
+
+<h4 id="toc_9">Intro</h4>
+
+<p>A grammar G is a quadruple (\(V_T\),\(V_N\),\(S\),\(P\)), where</p>
+
+<ul>
+<li>\(V_T\) is a finite set of terminal symbols or tokens (end points)</li>
+<li>\(V_N\) is a finite set of nonterminal symbols
+
+<ul>
+<li>\(V_T\) ∩ \(V_N\) = ∅, i.e a symbol has to be either a terminal or non terminal symbol, not both. </li>
+</ul></li>
+<li>\(S\) is a unique start symbol (S ∈ N)</li>
+<li>\(P\) is a finite set of rules or productions of the form (A, α) where
+A is a nonterminal, and
+
+<ul>
+<li>α is a string of zero or more terminals and nonterminals</li>
+<li>Note: zero means that α = ǫ is possible</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_10">Backus-Naur Form (BNF)</h4>
+
+<p>just a notation for writing a CFG, here the (A, \(\alpha\)) production is the same as saying that A is defined to be \(\alpha\) and is denoted as \(A \rightarrow \alpha\)</p>
+
+<p>It also allows us to abbreviate something like this </p>
+
+<p>\(A \rightarrow \alpha 1\)<br>
+\(A \rightarrow \alpha 2\)<br>
+\(A \rightarrow \alpha 3\)<br>
+\(A \rightarrow \alpha 4\)</p>
+
+<p>to something like this</p>
+
+<p>\(A \rightarrow \alpha 1\)<br>
+\(| \rightarrow \alpha 2\)<br>
+\(| \rightarrow \alpha 3\)<br>
+\(| \rightarrow \alpha 4\)</p>
+
+<p>where the pipe is just a &quot;or else&quot;</p>
+
+<h4 id="toc_11">Conventions</h4>
+
+<p><img src="raw/raw/D_1.png" style="width: 500px"></p>
+
+<h2 id="toc_12">Micro English</h2>
+
+<hr>
+
+<p>lets take a very small simple subset of english and define the CFG for it in BNF. </p>
+
+<div><pre class="line-numbers"><code class="language-none">1 ⟨sentence⟩ → ⟨subject⟩ ⟨predicate⟩
+2 ⟨subject⟩ → NOUN
+3       | ARTICLENOUN
+4 ⟨predicate⟩ → VERB ⟨object⟩
+5 ⟨object⟩ → NOUN
+6       | ARTICLENOUN</code></pre></div>
+
+<p>This just says the a sentence is a subject followed by a predicated and then defines a subject as either a noun or article noun and a predicate as a verb followed by a noun or article noun </p>
+
+<p>For example &quot;John ate pasta&quot;</p>
+
+<p>from this we can extract out our (\(V_T\),\(V_N\),\(S\),\(P\)). </p>
+
+<p>The terminal symbols are Nouns or verbs and everything else is a normal symbol. <br>
+The start symbol is a sentence, (left side of 1st production is always the start)</p>
+
+<p>and the productions themselves are listed. </p>
+
+<h2 id="toc_13">Derivation</h2>
+
+<hr>
+
+<p>A grammar derives sentences by</p>
+
+<ol>
+<li>beginning with the start symbol, and</li>
+<li>repeatedly replacing a nonterminal by the right-hand side of a production with that nonterminal on the left-hand side, until there are no more nonterminals to replace.</li>
+</ol>
+
+<p>Such a sequence of replacements is called a <code>derivation</code> of the sentence being analysed</p>
+
+<p>The strings of terminals and nonterminals appearing in the various derivation steps are called <code>sentential forms</code></p>
+
+<p>A <code>sentence</code> is a sentential form with terminals only and the language is  the set of all sentences thus derived</p>
+
+<h4 id="toc_14">Example</h4>
+
+<p>given micro english and given a sentence <code>PETER PASSED THE TEST</code> verify that it is a valid sentence given our grammar. </p>
+
+<p>alright lets break it down</p>
+
+<div><pre class="line-numbers"><code class="language-none">Sentence -&gt; subject predicate
+    Peter (subject) passed the test (predicate)
+subject -&gt; Noun | article noun
+    Peter (noun) passed the test (predicate)
+predicate -&gt; verb object
+    Peter (noun) passed (verb) the test (object)
+object -&gt; noun | article noun
+    peter (noun) passed (verb) the (article) test (noun)</code></pre></div>
+
+<p>Thus the sentence is <code>NOUN VERB ARTICLE NOUN</code></p>
+
+<p>now when coding this up we have to make a choice</p>
+
+<h4 id="toc_15">Notation</h4>
+
+<p>The context-free language (CFL) is the language generated by a CFG</p>
+
+<p><img src="raw/raw/D_2.png" style="width: 500px"></p>
+
+<h2 id="toc_16">Leftmost and Rightmost Derivations</h2>
+
+<hr>
+
+<p>The algorithm is basically saying &quot;alright what&#39;s non terminal and what can i replace it with so it gets closer to non terminal&quot;</p>
+
+<p>and which non terminal the algorithm picks next can be set to be either</p>
+
+<ol>
+<li>The Leftmost derivation: always replace the leftmost
+nonterminal.</li>
+<li>The Rightmost derivation: always replace the rightmost nonterminal.</li>
+</ol>
+
+<h2 id="toc_17">The language defined by a grammar</h2>
+
+<hr>
+
+<p>The language defined by a grammar: all the sentences derived from the grammar.<br>
+The language defined by the micro-English grammar:<br>
+    <code>NOUN VERB NOUN</code><br>
+    <code>NOUN VERB ARTICLE NOUN</code><br>
+    <code>ARTICLE NOUN VERB NOUN</code><br>
+    <code>ARTICLE NOUN VERB ARTICLE NOUN</code></p>
+
+<h1 id="toc_18">Parsing</h1>
+
+<h2 id="toc_19">Intro</h2>
+
+<hr>
+
+<p>Use syntactic rules to break a sentence into its component parts and analyse their relationship. a parser is thus a program that uses a CFG to parse a sentence or a program (Assignment 3). In particular, it constructs its leftmost or rightmost derivation, or builds the parse tree for the sentence.</p>
+
+<p>A recogniser is a parser that checks only the syntax (without having to built the parse tree). It outputs YES if the program is legal and NO otherwise (Assignment 2).</p>
+
+<p><img src="raw/raw/D_3.png" style="width: 500px"></p>
+
+<h2 id="toc_20">Parse Trees</h2>
+
+<hr>
+
+<p>so you can do the left most and right more derivations to parse a sentence but it&#39;s much more useful to use that to construct a parse tree. </p>
+
+<p><img src="raw/raw/D_4.png" style="width: 500px"></p>
+
+<p>the start symbol here is the root of the tree and non terminals are nodes, the leafs are obviously terminal symbols. </p>
+
+<p>with this tree we can get the sentence if we read the leafs left to right. </p>
+
+<h4 id="toc_21">Why?</h4>
+
+<p>So we can get the same sort of information from a derivation rather then a parse tree, so why use the tree?<br>
+It&#39;s a graphical representation of the same information and makes it easier to think, furthermore computer science is deeply familiar  with tree structures and has gotten very good at manipulating them. </p>
+
+<p>effectively we end up using derivation to construct the tree. </p>
+
+<h2 id="toc_22">Extended Backus-Naur Form (EBNF)</h2>
+
+<hr>
+
+<p>This is just BNF + regular expressions. </p>
+
+<p><img src="raw/raw/D_5.png" style="width: 500px"></p>
+
+<h4 id="toc_23">Example</h4>
+
+<p>lets say that a VC program is a sequence of zero or more functions</p>
+
+<p>in BNF that would be</p>
+
+<div><pre class="line-numbers"><code class="language-none">program → decl-list
+decl-list → decl-list func-decl
+        | decl-list var-decl
+        | ϵ</code></pre></div>
+
+<p>as in a program is declaration list which in tern <br>
+is either empty strings or function / variable declarations. </p>
+
+<p>If we wrote this in EBNF we get</p>
+
+<div><pre class="line-numbers"><code class="language-none">program → (func-decl | var-decl)∗</code></pre></div>
+
+<p>Reads easier doesn&#39;t it?</p>
+
+<h2 id="toc_24">Structure of Grammars</h2>
+
+<hr>
+
+<h4 id="toc_25">Top Down</h4>
+
+<p>This is a grammar which is structured much like the example for a VC Program above where we start with a top level defintion of a program and get more detailed as we go down. </p>
+
+<h4 id="toc_26">Bottom Up</h4>
+
+<p>here the deeper nodes in the parse tree processed first and the deeper operators in the parse tree have higher precedence, think that rather then classifying a whole program you jump right to classifying the first thing you see as a leaf node then building up. <br>
+This is assignment 5 and will be covered more later. </p>
+
+<h4 id="toc_27">Expressions and Operator associativity</h4>
+
+<p>There is a classic expression grammar</p>
+
+<div><pre class="line-numbers"><code class="language-none">⟨expr⟩ → ⟨expr⟩ + ⟨term⟩
+        | ⟨expr⟩ − ⟨term⟩
+        | ⟨term⟩
+⟨term⟩ → ⟨term⟩ ∗ ⟨factor⟩
+        | ⟨term⟩/⟨factor⟩
+        | ⟨factor⟩
+⟨factor⟩ → ( ⟨expr⟩ )
+        |ID
+        | INT    //Note:integer numbers not the type</code></pre></div>
+
+<p>I.e any math expression can be broken down into some + / - of terms first and then those terms can be expressed as a factor or multiple of factors and terms. <br>
+Finally factors can themselves be contained expressions or leaf ints or ids. </p>
+
+<p>Thus something like <code>A + B ∗ 10</code> becomes this</p>
+
+<p><img src="raw/raw/D_6.png" style="width: 300px"></p>
+
+<p>This is because higher precedence operators bind to their operands before lower precedence operators and thus appear lower in the tree. </p>
+
+<p>the multiply symbol attaches to the B first, forming a term group meaning that it gets evaluated first. Which is what we want because basic PEDMAS dictates that <code>A+B*10</code> is <code>A+(B*10)</code></p>
+
+<p>ok but what if we said <code>(A+B)*10</code> the tree expands differently then</p>
+
+<p><img src="raw/raw/D_7.png" style="width: 300px"></p>
+
+<p>Here the expr goes directly to a term which goes to a term * factor. <br>
+the term then evaluates to a factor which evaluates back to a expression. </p>
+
+<p>Because of this the plus now appears lower in the tree then the multiply and thus is evaluated first at higher precedence </p>
+
+<h4 id="toc_28">Left and Right Recursive productions</h4>
+
+<p>So remember that as part of a grammar definition we define a set of productions, well those can be left or right and depending on which one they are we get a different tree being formed. </p>
+
+<p><img src="raw/raw/D_8.png" style="width: 300px"></p>
+
+<p>The formal definition is that <code>Left-Recursive Productions</code> have the form</p>
+
+<p><em>A→Aα</em></p>
+
+<p>and <code>Right-Recursive Productions</code> have the form</p>
+
+<p><em>A→αA</em></p>
+
+<p>this is important because with equations with equal precedence like <code>A-B-C</code> the order they are calculated in depends on the direction of the productions. </p>
+
+<h2 id="toc_29">Ambiguity</h2>
+
+<hr>
+
+<h4 id="toc_30">intro</h4>
+
+<p>anyone who speaks english knows that it&#39;s a bit fucked, for example, real sentences written into medical records:</p>
+
+<ol>
+<li>By the time he was admitted, his rapid heart had stopped, and he was feeling better.</li>
+<li>Patient has chest pain if she lies on her left side for over a year.</li>
+<li>On the second day the knee was better and on the third day it had completely disappeared.</li>
+<li>The patient was tearful and crying constantly. She also appears to be depressed.</li>
+<li>Discharge status: Alive but without permission. The patient will need disposition, and therefore we will get Dr. Blank to dispose of him.</li>
+</ol>
+
+<p>PURE FUCKEN GOLD</p>
+
+<p>A grammar is ambiguous if it permits</p>
+
+<ul>
+<li>more than one parse tree for a sentence,
+or in other words,</li>
+<li>more than one leftmost derivation or more than one
+rightmost derivation for a sentence.</li>
+</ul>
+
+<p>Basically if the same sentence can be interpreted in more then one way. </p>
+
+<h4 id="toc_31">Example</h4>
+
+<p>An ambiguous expression grammar:</p>
+
+<div><pre class="line-numbers"><code class="language-none">⟨expr⟩ → ⟨expr⟩ ⟨op⟩ ⟨expr⟩ | ID | INT | ( ⟨expr⟩ )
+⟨op⟩ →+|−|∗|/</code></pre></div>
+
+<p>if we take the Lm (Leftmost derivation) we can get 2 results</p>
+
+<p><img src="raw/raw/D_9.png" style="width: 300px"></p>
+
+<h4 id="toc_32">Coping</h4>
+
+<p>well the obvious thing is to rewrite the grammar so it is unambiguous</p>
+
+<p>we can also use disambiguating rules to throw away undesirable parse trees, leaving only one tree for each sentence. I.e we get multiple results but have a system for choosing 1 each time. i.e</p>
+
+<ul>
+<li>Rule 1: * and / have higher precedence than + and −</li>
+<li>Rule 2: The operators of equal precedence associate to
+the left.</li>
+</ul>
+
+<h4 id="toc_33">Ambiguous Context-Free Languages</h4>
+
+<p>These are languages such that every grammar generating the language is ambiguous</p>
+
+<p>But a interesting theoretical result from looking at these languages is that there can be no algorithm that can tell us of a CFL is ambigious or not. </p>
+
+<p>some tools can semi predict if a language is ambiguous or not but because this problem relates directly to the <code>Post correspondence problem</code> a simpler varied version of the <code>halting problem</code> which have been proven to be undecidable problems. </p>
+
+<h4 id="toc_34">The “Dangling-Else” Grammar</h4>
+
+<p>We can recognise one line if else statements with this</p>
+
+<div><pre class="line-numbers"><code class="language-none">⟨stmt⟩ -&gt; IF “(” ⟨expr⟩ “)” ⟨stmt⟩
+        |   IF “(” ⟨expr⟩ “)” ⟨stmt⟩ ELSE ⟨stmt⟩
+        |  other</code></pre></div>
+
+<p>but note that input such as <code>IF(e1) if (e2) s1 else s2</code> can produce<br>
+either </p>
+
+<div><pre class="line-numbers"><code class="language-none">if(e1)
+    if(e2)
+        s1
+    else
+        s2</code></pre></div>
+
+<p>OR</p>
+
+<div><pre class="line-numbers"><code class="language-none">if(e1)
+    if(e2)
+        s1
+else
+    s2</code></pre></div>
+
+<p>What we do here is match the else with the closest previous unmatched if</p>
+
+<p>so the first interpretation is correct</p>
+
+<h4 id="toc_35">Chomsky</h4>
+
+<p>Remember this table?</p>
+
+<p><img src="raw/raw/D_10.png" style="width: 500px"></p>
+
+<p>note that each type is a subset of the previous. </p>
+
+<p>Type 0 is all languages, type 1 is a subset of type 0 and type 2 is a subset of type 1 (and hence also a subset of type 0).</p>
+
+<h2 id="toc_36">Regular Expressions, Regular Grammars and Finite Automata</h2>
+
+<hr>
+
+<p>All three are equivalent:</p>
+
+<p><img src="raw/raw/D_11.png" style="width: 500px"></p>
+
+<h4 id="toc_37">Limitations</h4>
+
+<p><strong>can&#39;t count</strong>, can&#39;t nest, great for tokens but not much else. </p>
+
+<h4 id="toc_38">Limitations of CFG</h4>
+
+<p>can&#39;t define ALL languages, must only define a subset. </p>
+
+<p>it also can&#39;t enforce declaration before us of functions or variables, it just recognise a declaration and a variable. </p>
+
+<p>it also can&#39;t enforce that a function is called with the right number of arguments, again this has to be done externally. </p>
+
+<p>can count but only up to 2, if it tries to count more then 2 variables it becomes context sensitive. in essence this is because with more then two variables to keep track off your production rules now have to take in forward and backwards context into consideration (this rule only applies if there is a certain number of a&#39;s behind and b&#39;s infront)</p>
+
+<p>where as with 2 variables you can just state the relationship before OR after. </p>
+
+<p>(i think)</p>
+
+<h1 id="toc_39">Equivalence between Regular Grammars and FAs</h1>
+
+<h2 id="toc_40">Converting NFAs to Right-Linear Grammars</h2>
+
+<hr>
+
+<h4 id="toc_41">Right Linear Grammars</h4>
+
+<p>this is just a CFG which every production rule has at most 1 non-terminal on the right end of the result side. </p>
+
+<p>This can effectively describe the regular languages.</p>
+
+<h4 id="toc_42">how?</h4>
+
+<p><img src="raw/raw/D_12.png" style="width: 500px"></p>
+
+<h4 id="toc_43">Example</h4>
+
+<p><img src="raw/raw/D_13.png" style="width: 500px"></p>
+
+<h2 id="toc_44">Converting Right-Linear Grammars to NFAs</h2>
+
+<hr>
+
+<p><img src="raw/raw/D_14.png" style="width: 500px"></p>
+
+<p><img src="raw/raw/D_15.png" style="width: 500px"></p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+<script type="text/x-mathjax-config">
+(function () {
+
+MathJax.Hub.Config({
+	'showProcessingMessages': false,
+	'messageStyle': 'none'
+});
+
+if (typeof MathJaxListener !== 'undefined') {
+	MathJax.Hub.Register.StartupHook('End', function () {
+		MathJaxListener.invokeCallbackForKey_('End');
+	});
+}
+
+})();
+</script>
+
+<script type="text/javascript" src="raw/raw/https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>
