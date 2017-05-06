@@ -22,13 +22,13 @@ In general a pass is some process of input, processing and output.
 
 #### One-Pass Compilers
 
-<img src="D_1.png" style="width: 300px">
+<img src="raw/D_1.png" style="width: 300px">
 
 #### Two-Pass Compilers
 
 Most compilers are multi-pass compilers. 
 
-<img src="D_2.png" style="width: 300px">
+<img src="raw/D_2.png" style="width: 300px">
 
 In a two pass compiler we have a added intermediate representation which allows us to have
 
@@ -86,21 +86,21 @@ Lets look at a parse tree and it's equivalent Abstract Syntax Tree.
 
 `1 * (2+3)`
 
-<img src="D_3.png" style="width: 300px">
+<img src="raw/D_3.png" style="width: 300px">
 
 the parse tree is unique for this expression and contains everything needed to ensure that a set of input tokens is syntactically legal. 
 
-<img src="D_4.png" style="width: 300px">
+<img src="raw/D_4.png" style="width: 300px">
 
 Non terminals such as term and factor are not needed because the operator precedence is clear from the tree. Furthermore brackets arn't needed either, we are sure the input program is syntactically legal at this point and we don't need them to ensure correct grouping. 
 
 Note in addition that with the line `if (x) x = 0 else x = 1;` the parse tree would have this. 
 
-<img src="D_5.png" style="width: 300px">
+<img src="raw/D_5.png" style="width: 300px">
 
 and the AST takes out the key words as it is obvious given we are in a `if-stmt` what we are looking at. 
 
-<img src="D_6.png" style="width: 300px">
+<img src="raw/D_6.png" style="width: 300px">
 
 
 ## Making a AST Class
@@ -137,7 +137,7 @@ Now this is used in TreeDrawer. Layout visitor is the visitor with all the addit
 #### Formal Definition
 
 An attribute grammar is a triple:
-$$A = (G,V,F)$$
+\\(\\)A = (G,V,F)\\(\\)
 
 Where G is a CFG, V is a finite set of distinct attributes and F is a finite set of semantic rules about the attributes. 
 
@@ -171,14 +171,14 @@ A attribute can represent anything we choose:
 #### An Attribute Grammar for Converting Infix to Postfix
 
 
-<img src="D_7.png" style="width: 300px">
-<img src="D_8.png" style="width: 300px">
+<img src="raw/D_7.png" style="width: 300px">
+<img src="raw/D_8.png" style="width: 300px">
 
 This works off every token having a attribute t which holds it's actual string and we can now specify how we want the input code to be interpreted such as having the tree constructed postfix even if the input was infix. 
 
 #### An Attribute Grammar for Constructing ASTs
 
-<img src="D_9.png" style="width: 300px">
+<img src="raw/D_9.png" style="width: 300px">
 
 here we build up a ast rather then a string. 
 Now it's more obvious to see that a attribute grammar takes a normal CFG, removes all the stuff we don't care about and lets us deal with it in terms on attributes. 
@@ -204,8 +204,8 @@ The return type Stmt is abstract; Stmt is the abstract class for the nonterminal
 --- 
 
 
-<img src="D_10.png" style="width: 300px">
-<img src="D_11.png" style="width: 300px">
+<img src="raw/D_10.png" style="width: 300px">
+<img src="raw/D_11.png" style="width: 300px">
 
 
 

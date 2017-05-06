@@ -72,19 +72,19 @@ To do this though notice that we need a little more information then just the ne
 
 All possible leftmost derivations, i.e what would happen if you reduced the left hand side as much as possible. 
 
-<img src="D_1.png" style="width: 400px">
+<img src="raw/D_1.png" style="width: 400px">
 
 This lets us look at all the possible ends of something like Bc {e,g} compares to Ab {c,d,h,i} and this of course we pick Bc because g is the next token. 
 
 #### Formal Defintion
 
-$First(\alpha)$ : The set of all terminals that can begin any strings derived from α. Basically if we were to look at all possible derivations of $\alpha$ the First would be the set of all the terminals that appeared at the start of the strings. 
+\\(First(\alpha)\\) : The set of all terminals that can begin any strings derived from α. Basically if we were to look at all possible derivations of \\(\alpha\\) the First would be the set of all the terminals that appeared at the start of the strings. 
 
-$First(\alpha)$ can also include $\epsilon$ if it is a valid end state for a given $\alpha$
+\\(First(\alpha)\\) can also include \\(\epsilon\\) if it is a valid end state for a given \\(\alpha\\)
 
 #### Nullable Nonterminals
 
-A nonterminal A is nullable if it can be derived to a $\epsilon$.
+A nonterminal A is nullable if it can be derived to a \\(\epsilon\\).
 
 #### A Procedure to Compute First(α)
 
@@ -118,7 +118,7 @@ def first(s):
 ```
 The formal explanation:
 
-We have two cases, in the first case α is a single symbol or $\epsilon$, Here we can do this
+We have two cases, in the first case α is a single symbol or \\(\epsilon\\), Here we can do this
 
 ```
 if α is a terminal a:
@@ -163,13 +163,13 @@ as C is the first non nullable symbol.
 
 Now to evaluate these we go to case 1. 
 
-if $\alpha$ is a non terminal, the First of it is the union of all it's possible productions. 
+if \\(\alpha\\) is a non terminal, the First of it is the union of all it's possible productions. 
 
 i.e First(A) = {e,f}
 First(B) = {g,h}
 First(C) = {p,q}
 
-Note that we do not add in epsilon in this case as ABCd doesn't evaulute to $\epsilon*$
+Note that we do not add in epsilon in this case as ABCd doesn't evaulute to \\(\epsilon\*\\)
 
 but in this case
 
@@ -179,7 +179,7 @@ A → e|f|epsilon
 B → g|h|epsilon
 C → p|q|epsilon
 ```
-First(ABC) = {e,f,g,h,p,q,$\epsilon$}
+First(ABC) = {e,f,g,h,p,q,\\(\epsilon\\)}
 
 #### Linking it back
 
@@ -208,7 +208,7 @@ thus allowing us to pick Bc because it contains the g terminal.
 
 Basically a form of grammar that does not have any ambiguity, note below
 
-<img src="D_2.png" style="width: 400px">
+<img src="raw/D_2.png" style="width: 400px">
 
 Taking out recursion gives us a more defined grammar. The choice operator (|) here selects the first match, while it is ambiguous in CFG
 
@@ -219,7 +219,7 @@ btw this makes more sense if you remember the E is expression and T is term and 
 
 First of all Follow sets tell us the series of symbols that Follow a given nonterminal A. Why do we care?
 
-First sets do not tell us when to apply A→α such that α=⇒$\epsilon$* (the important special case is A→$\epsilon$)
+First sets do not tell us when to apply A→α such that α=⇒\\(\epsilon\\)\* (the important special case is A→\\(\epsilon\\))
 
 Basically First sets can tell us what to expand to get a symbol we need, i.e if First(E) gives us a gA and the lookahead symbol is a g perfect! 
 But it can not tell us how to get rid of something. FOLLOW covers the possibility that the leftmost non-terminal can disappear, so that the lookahead symbol is not actually a part of what we're presently expanding, but rather the beginning of the next construct.
@@ -235,14 +235,14 @@ we go S->aAb then A->epsilon
 when we have aAb our logic would go "alright we have a, the lookahead symbol is now b, how can we convert A into b" and would crash. BUT if we said "alright well Follow(A) = {b} lets just have A go to epsilon to get our lookahead token in a round about way"
 
 Follow sets constructed only for nonterminals and by convention, assume every input is terminated by a special end marker (i.e., the EOF marker), denoted by `$`
-Follow sets do not contain $\epsilon$
+Follow sets do not contain \\(\epsilon\\)
 
 #### Defintion
 
 For a nonterminal A, Follow(A) is the set of terminals that can appear immediately to the right of A in some sentential form
 
 formally that is 
-$$ Follow(A) = \{a | S\rightarrow * ···Aa···\}$$
+\\(\\) Follow(A) = \{a | S\rightarrow \* ···Aa···\}\\(\\)
 where S is the start symbol of the grammar.
 
 #### Algorithm
@@ -280,7 +280,7 @@ T → T∗F | T/F | FF → INT | (E)
 
 get Follow(E).
 
-So E is a start symbol, so add `$` to our set `{$}`
+So E is a start symbol, so add `\\(` to our set `{\\)}`
 Now E is on the right of the first and third transformations. 
 
 ```
@@ -307,10 +307,10 @@ In the case there are no epsilons the first is more then enough because the foll
 
 #### Defintion
 
-The select set for a production $A\rightarrow \alpha$:
+The select set for a production \\(A\rightarrow \alpha\\):
 
-1. If $epsilon$ is in First(α), then	- Select(A→$\epsilon$) = (First($\alpha$) − {$\epsilon$}) $\cup$ Follow(A)2. Otherwise:
-	- Select(A→$\epsilon$) = First($\epsilon$)
+1. If \\(epsilon\\) is in First(α), then	- Select(A→\\(\epsilon\\)) = (First(\\(\alpha\\)) − {\\(\epsilon\\)}) \\(\cup\\) Follow(A)2. Otherwise:
+	- Select(A→\\(\epsilon\\)) = First(\\(\epsilon\\))
 
 This assumes that the production you give it to be used in some derivation. Thus, the Select not needed if A has has one alternative i.e A -> a this is obvious, we don't need to make a decision her so a select set is useless. 
 
@@ -338,11 +338,11 @@ A method, called match, for matching the tokens at production right-hand sides, 
 #### Nonterminal parsingA method, called parseA, for every nonterminal
 
 First how can we parse a non terminal A in the form
-of $A\rightarrow a_{1}|a_{2}|...|a_{n}$
+of \\(A\rightarrow a_{1}|a_{2}|...|a_{n}\\)
 
-Basically we go through every possible options $a_1$ to $a_n$ and 
+Basically we go through every possible options \\(a_1\\) to \\(a_n\\) and 
 find which one out currentToken matches with. 
-i.e if our next token was \<expr\> and we had $A \rightarrow <expr> | <fact>$ the parse code would match the expr and parse that not the fact. 
+i.e if our next token was \<expr\> and we had \\(A \rightarrow <expr> | <fact>\\) the parse code would match the expr and parse that not the fact. 
 
 ```java
 void parseA() {	switch (currentToken.kind) {
@@ -352,7 +352,7 @@ void parseA() {	switch (currentToken.kind) {
 }
 ```
 
-Of course if we have $A\rightarrow \alpha$ then we just do
+Of course if we have \\(A\rightarrow \alpha\\) then we just do
 
 ```java
 void parseA() {
@@ -363,13 +363,13 @@ note that A is variable here it could be parseExpr or parseDick
 #### String parsing
 Ok now comes the fun part, parsing multisymbol strings. 
 
-Suppose $\alpha _i = aABbC$, where A, B and C are nonterminals
+Suppose \\(\alpha _i = aABbC\\), where A, B and C are nonterminals
 
-• parse $\alpha _{i}$ implemented as:
+• parse \\(\alpha _{i}\\) implemented as:
 
 ```javamatch("a");parseA();parseB();match("b");parseC();
 ```
-If $\alpha _{i} = \epsilon$, then parse $\alpha _{i}$ implemented as:
+If \\(\alpha _{i} = \epsilon\\), then parse \\(\alpha _{i}\\) implemented as:
 
 ```
 /* empty statement */
@@ -383,7 +383,7 @@ void parseWhileStmt() throws SyntaxError {   match(Token.WHILE);   match(Token
 
 #### Managing the start symbol
 
-<img src="D_3.png" style="width: 400px">
+<img src="raw/D_3.png" style="width: 400px">
 
 
 # LL(1)
@@ -391,7 +391,7 @@ void parseWhileStmt() throws SyntaxError {   match(Token.WHILE);   match(Token
 ## Intro
 ---
 
-<img src="D_4.png" style="width: 400px">
+<img src="raw/D_4.png" style="width: 400px">
 
 It is called LL because It parses the input from `L`eft to right, performing `L`eftmost derivation of the sentence.
 
@@ -399,15 +399,15 @@ It is called LL because It parses the input from `L`eft to right, performing `L`
 ---
 
 A grammar is LL(1) if for every nonterminal of the form
-$$A \rightarrow \alpha_{1}|···|\alpha_{n}$$the select sets are pairwise disjoint, i.e.:$$Select(A→\alpha_{i}) \cap Select(A→\alpha_{j}) = ∅$$
+\\(\\)A \rightarrow \alpha_{1}|···|\alpha_{n}\\(\\)the select sets are pairwise disjoint, i.e.:\\(\\)Select(A→\alpha_{i}) \cap Select(A→\alpha_{j}) = ∅\\(\\)
 for all i and j such that i != j.Basically for any given non terminal every derivation must only appear once. 
 This implies there can be at most one nullable alternative as every derivation has a unique Select set and thus path to it. 
 
-When we have this we can have a parse function with only 1 nullable alternative in the transformation. Lets say that $\alpha_{n}$ is the only nullable alternative. In this case we can set every other alpha simply as $Select(A\rightarrow \alpha_{i}) = First(\alpha_{i}) $ because remember we only really case about the Follow sets in relation to nonterminals that can me eliminated. 
+When we have this we can have a parse function with only 1 nullable alternative in the transformation. Lets say that \\(\alpha_{n}\\) is the only nullable alternative. In this case we can set every other alpha simply as \\(Select(A\rightarrow \alpha_{i}) = First(\alpha_{i}) \\) because remember we only really case about the Follow sets in relation to nonterminals that can me eliminated. 
 
 This simplifies the code significantly. 
 
-<img src="D_5.png" style="width: 400px">
+<img src="raw/D_5.png" style="width: 400px">
 
 
 #### Left-Recursive Grammars Are Not LL(1)
@@ -432,8 +432,8 @@ so what we generally do is remove recursion from the grammar
 
 Just for the test note that `Non-Direct Left Recursion` is just something like this
 
-$A \rightarrow B\alpha $
-$B \rightarrow A\beta $
+\\(A \rightarrow B\alpha \\)
+\\(B \rightarrow A\beta \\)
 
 #### Grammar Rewriting
 
@@ -441,12 +441,12 @@ This is a method for removing left recursion from a grammar
 
 Lets say given the following grammar
 
-$A → \alpha$
-$A → A\beta_{1}|A\beta_{2}$
+\\(A → \alpha\\)
+\\(A → A\beta_{1}|A\beta_{2}\\)
 
 We can transform into this to remove the left recursion on the second transformation. 
 
-$A → \alpha A′$$A′ → \beta_{1}A′|\beta_{2}A′|\epsilon$
+\\(A → \alpha A′\\)\\(A′ → \beta_{1}A′|\beta_{2}A′|\epsilon\\)
 
 Note the use of a intermediate to convert this into a form that uses RIGHT recursion instead, i.e you can parse but after a match to make sure a loop doesn't hit. 
 
@@ -454,7 +454,7 @@ Note the use of a intermediate to convert this into a form that uses RIGHT recur
 
 We could also take the above defined grammar and convert it into
 
-$A → \alpha(\beta_{1}|\beta_{2})*$
+\\(A → \alpha(\beta_{1}|\beta_{2})\*\\)
 
 This also eliminates left recursion. 
 
@@ -462,13 +462,13 @@ Here we basically just substituted A for alpha in the second transformation.
 
 > This is Recommended for Ass 2
 
-<img src="D_6.png" style="width: 400px">
+<img src="raw/D_6.png" style="width: 400px">
 
 #### Grammars with Common Prefixes Are Not LL(1)
 
 Basically if you have two cases both of which rely on the same prefix (i.e common prefix) then the code becomes sorta non-deterministic. 
 
-<img src="D_7.png" style="width: 400px">
+<img src="raw/D_7.png" style="width: 400px">
 
 
 #### Left Factoring
@@ -477,33 +477,33 @@ Just like we have ways to convert grammars with left recursion into ones without
 
 Given
 
-$A → \alpha \beta_{1}|\alpha \beta_{2}$
-$A→\gamma$
+\\(A → \alpha \beta_{1}|\alpha \beta_{2}\\)
+\\(A→\gamma\\)
 
 we can get
 
-$A → \alpha A′$
-$A→\gamma$$A′→ \beta_{1}|\beta_{2}$
+\\(A → \alpha A′\\)
+\\(A→\gamma\\)\\(A′→ \beta_{1}|\beta_{2}\\)
 
-All we did here was `left factor` the grammar i.e make transformation 1 into $A \rightarrow \alpha(\beta_{1}|\beta_{2})$ and then replace that with a intermediate. 
+All we did here was `left factor` the grammar i.e make transformation 1 into \\(A \rightarrow \alpha(\beta_{1}|\beta_{2})\\) and then replace that with a intermediate. 
 
 Here is an example
 
-<img src="D_8.png" style="width: 400px">
+<img src="raw/D_8.png" style="width: 400px">
 
 #### Choice Operator
 
 This is the recommended way to do ass 2 which is match the common prefix first THEN use the choice operator. 
 
-$A \rightarrow \alpha(\beta_{1}|\beta_{2})$
+\\(A \rightarrow \alpha(\beta_{1}|\beta_{2})\\)
 
 Here is an example
 
-<img src="D_9.png" style="width: 400px">
+<img src="raw/D_9.png" style="width: 400px">
 
 #### Coding parse in the presence of regular operators
 
-<img src="D_10.png" style="width: 400px">
+<img src="raw/D_10.png" style="width: 400px">
 
 ## LL(k)
 ---

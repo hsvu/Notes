@@ -55,7 +55,7 @@ Our approach for VC:
 - Static semantics specified	- in English (the VC Language Specification), and
 	- by an attribute grammar in part- Build a semantic analyser by hand
 
-<img src="D_1.png" style="width: 400px">
+<img src="raw/D_1.png" style="width: 400px">
 
 ## Attribute Grammars
 ---
@@ -76,7 +76,7 @@ computed from parent and siblings
 #### Formal
 
 An Attribute Grammer is a triple
-$ A = (G,V,F) $
+\\( A = (G,V,F) \\)
 
 Here G is a CFG, V is the set of attributes and F is the set of semantic rules about the attributes. 
 
@@ -86,7 +86,7 @@ Because of this each attribute has a name and a type.
 ## Example
 ---
 
-<img src="D_2.png" style="width: 400px">
+<img src="raw/D_2.png" style="width: 400px">
 
 The entire grammar worked out is on the slides but it's basically just defining attributes of the tokens. 
 
@@ -105,20 +105,20 @@ note that val is a synthesised attribute because it's computed by the token itse
 
 So we have parse trees as such
 
-<img src="D_3.png" style="width: 400px">
+<img src="raw/D_3.png" style="width: 400px">
 
 a Decorated or annotated parse tree is as such
 
-<img src="D_4.png" style="width: 400px">
+<img src="raw/D_4.png" style="width: 400px">
 
 it just includes some of the attribute information. 
 
 #### Synthesised Attributes
 
-<img src="D_5.png" style="width: 400px">
+<img src="raw/D_5.png" style="width: 400px">
 
 #### Inherited Attributes
-<img src="D_6.png" style="width: 400px">
+<img src="raw/D_6.png" style="width: 400px">
 
 ## Formal Definitions
 ---

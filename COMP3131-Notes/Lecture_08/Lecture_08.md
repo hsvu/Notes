@@ -33,6 +33,10 @@ Within VC we have 2 block types
 1. the entire program (i.e the outermost block)
 2. compound statements, anything within curly braces `{ ... }`
 
+> A Block structured language permits the nesting of blocks, note though that c is not strictly block-structured because you can't nest functions inside of functions 
+
+\\( x = y \\)
+\\( x = y \\)
 
 
 

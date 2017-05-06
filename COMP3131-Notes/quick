@@ -1,0 +1,4 @@
+for f in $(ls Lecture_0*/*.md)
+do
+	relinkHTML $f
+done

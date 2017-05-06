@@ -28,9 +28,9 @@ Recursion = Iteration + Stack
 ## Bottom Up
 ---
 
-<img src="D_2.png" style="width: 300px">
-<img src="D_3.png" style="width: 300px">
-<img src="D_4.png" style="width: 300px">
+<img src="raw/D_2.png" style="width: 300px">
+<img src="raw/D_3.png" style="width: 300px">
+<img src="raw/D_4.png" style="width: 300px">
 
  Build the parse tree starting with the the sentence being analysed (i.e., leaves) towards the start symbol (i.e., the root).Use one token of lookahead, in general.The basic (smallest) language constructs recognised first, then they are used to discover more complex constructs.Discover the rightmost derivation in reverse — the productions used in expanding the parse tree represent a rightmost derivation in reverse order
 
@@ -39,7 +39,7 @@ Recursion = Iteration + Stack
 #### Structure
 LL means left to right taking the Left most derivation and the (1) means only 1 lookahead token is needed. 
 
-<img src="D_5.png" style="width: 300px">
+<img src="raw/D_5.png" style="width: 300px">
 
 This program can output a AST OR the productions it used to get the input, basically a leftmost derivation. 
 
@@ -77,15 +77,15 @@ while(len(stack) > 0):
 For every production of the A→α in the grammar, do:
 	for all a in Select(A→α), set Table[A, a] = α
 
-<img src="D_6.png" style="width: 300px">
+<img src="raw/D_6.png" style="width: 300px">
 
-<img src="D_7.png" style="width: 300px">
+<img src="raw/D_7.png" style="width: 300px">
 
 The First select E -> TQ leads to the table entry Table[E,(] = TQ and Table[E,INT] = TQ
 
 #### Example
 
-<img src="D_8.png" style="width: 300px">
+<img src="raw/D_8.png" style="width: 300px">
 
 So we push on the start symbol E and out lookahead token is i. 
 
@@ -108,7 +108,7 @@ A grammar is LL(1) if every table entry contains at most one production. If we h
 
 #### Why Table-Driven LL(1) Parsers Cannot Handle Left Recursions
 
-<img src="D_9.png" style="width: 300px">
+<img src="raw/D_9.png" style="width: 300px">
 
 a production with left recursion can lead to ambiguity. 
 
@@ -122,11 +122,11 @@ same reason, you have two table entries in one cell.
 
 remember how you couldn't use a finite state automa to see if brackets were balanced WELL WE CAN WITH THIS
 
-<img src="D_10.png" style="width: 300px">
+<img src="raw/D_10.png" style="width: 300px">
 
 ## Parser Generators (Generating Top-Down Parsers)
 ---
 
-<img src="D_11.png" style="width: 300px">
+<img src="raw/D_11.png" style="width: 300px">
 
 

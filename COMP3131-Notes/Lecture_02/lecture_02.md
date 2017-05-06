@@ -10,14 +10,14 @@ For example this set {0,1} is a alphabet that describes every symbol used in bin
 #### String
 A finite sequence of symbols drawn from Σ, i.e a string is just a series of symbols from a alphabet connected. 
 Note that in this notation |s| means the length of string which is just the number of symbols contained. 
-We use the symbol ($\epsilon$)
+We use the symbol (\\(\epsilon\\))
 
 #### Language
 any set of strings over Σ, that is to say a series of strings. 
 note that it has two special cases
 
 - ∅: the empty set
-- {$\epsilon$} : the set with only empty strings
+- {\\(\epsilon\\)} : the set with only empty strings
 
 #### Examples of languages
 
@@ -39,13 +39,13 @@ We can split up a string into multiple parts
 | substring of s | s after a prefix and suffix have been removed |
 proper prefix suffix, substring of s | Any nonempty string x that is, respectively, a prefix, suffix or substring of s such that s != x |
 
-We can also concatenate strings, if we have $x$ and $y$ adding y onto x or concatenating x and y gives us $xy$
+We can also concatenate strings, if we have \\(x\\) and \\(y\\) adding y onto x or concatenating x and y gives us \\(xy\\)
 
 if x is key and y is work xy is keyword. 
 
-Not too complicated, but do note that with this we have this property with $\epsilon$
+Not too complicated, but do note that with this we have this property with \\(\epsilon\\)
 
-$\epsilon x= x\epsilon = x$
+\\(\epsilon x= x\epsilon = x\\)
 
 Again kinda obvious but it's good to have this formalised. 
 
@@ -53,11 +53,11 @@ Again kinda obvious but it's good to have this formalised.
 
 Here is a quick table to outline some of these transformations on two languages L and M
 
-<img src="L_trans.png" style="width: 500px">
+<img src="raw/raw/L_trans.png" style="width: 500px">
 
 This may seem hard to visualise, take a look at the example first
 
-<img src="L_trans_E.png" style="width: 500px">
+<img src="raw/raw/L_trans_E.png" style="width: 500px">
 
 The union of two languages is just a combination of all the symbols in both. 
 
@@ -80,9 +80,10 @@ You can formally define regular expressions in two steps, the inductive base (se
 
 ## Inductive Base
 ---
-1. $\epsilon$ is a RE, denoting the RL {$\epsilon$}2. a ∈ Σ is a RE,denoting the RL{a}f
+1. \\(\epsilon\\) is a RE, denoting the RL {\\(\epsilon\\)}
+2. a ∈ Σ is a RE,denoting the RL{a}f
 
-In simple terms, $\epsilon$ represents a set of empty strings so the regular expression "" matching nothing. 
+In simple terms, \\(\epsilon\\) represents a set of empty strings so the regular expression "" matching nothing. 
 And in addition a regular expression with just a symbol defines a set with that symbol. i.e it can only match with every instance of that symbol. 
 
 ##  Inductive Step
@@ -92,8 +93,10 @@ Suppose r and s are REs, denoting the RLs L(r) and L(s)
 
 Now we can start forming the regular expression language while linking it to our formal definition of languages, strings and alphabets. 
 
-1. (r)|(s) is a RE, denoting the RL L(r) $\cup$ L(s)
-2. (r)(s) is a RE, denoting the RL concatination L(r)L(s) 3. (r)∗ is a RE, denoting the RL kleene closure L(r)∗4. (r) is a RE, denoting the RL postive closure L(r)
+1. (r)|(s) is a RE, denoting the RL L(r) \\(\cup\\) L(s)
+2. (r)(s) is a RE, denoting the RL concatination L(r)L(s) 
+3. (r)∗ is a RE, denoting the RL kleene closure L(r)∗
+4. (r) is a RE, denoting the RL postive closure L(r)
 
 ## Rules
 ---
@@ -102,19 +105,21 @@ But we do have to define some rules around this now
 
 #### Precedence
 
-- “∗” has the highest precedence- “Concatenation” has the second highest precedence
+- “∗” has the highest precedence
+- “Concatenation” has the second highest precedence
 - “|” has the lowest precedence
 
 #### Associativity
 
 all are left-associative, if you don't have brackets, evaluate left to right, and all special symbols apply to the symbol to the left of it. 
 
-$a|b^*c$ is the same as $(a)|((b)^*(c))$
+\\(a|b^\*c\\) is the same as \\((a)|((b)^\*(c))\\)
 
 ## Examples
 ---
 
-• Alphabet: Σ = {0, 1}• RE: 0(0|1)*
+• Alphabet: Σ = {0, 1}
+• RE: 0(0|1)*
 
 What is the language defined by the RE?
 
@@ -122,7 +127,14 @@ Well we know from basic regex that 0(0|1)* is just any string that starts with a
 
 how this breaks down formally though is
 
-$L(0(0|1)^* )$$= L(0)L((0|1)^* )$$= \{0\}L(0|1)^*$$= \{0\}(L(0) ∪ L(1))^*$$= \{0\}(\{0\} ∪ \{1\})^*$$= \{0\}\{0, 1\}^*$$= \{0\}\{\epsilon ,0,1,00,01,10,11,...\}$$= \{0,00,01,000,001,010,011,...\}$
+\\(L(0(0|1)^\* )\\)
+\\(= L(0)L((0|1)^\* )\\)
+\\(= \{0\}L(0|1)^\*\\)
+\\(= \{0\}(L(0) ∪ L(1))^\*\\)
+\\(= \{0\}(\{0\} ∪ \{1\})^\*\\)
+\\(= \{0\}\{0, 1\}^\*\\)
+\\(= \{0\}\{\epsilon ,0,1,00,01,10,11,...\}\\)
+\\(= \{0,00,01,000,001,010,011,...\}\\)
 
 Kinda takes the magic out of regex doesn't it?
 
@@ -131,8 +143,8 @@ Kinda takes the magic out of regex doesn't it?
 
 If you have used regex before you may be thinking what about the life savers like `?` or `[]`. These are actually defined by the language but  just in longer forms. So we use these shorthands
 
-$r? = r|\epsilon$
-$[a-z] = \{abcdefghijklmnopqrstuvwxyz\}$
+\\(r? = r|\epsilon\\)
+\\([a-z] = \{abcdefghijklmnopqrstuvwxyz\}\\)
 and using the caret (`^`) just means the set of all valid symbols in the alphabet excluding the symbols specified. 
 
 ## VC
@@ -147,7 +159,10 @@ Just has a heads up the RE for reals is a bit complex because you can have digit
 It ends up being a set of regex: (NOTE that in this . does not represent any character)
 
 ```perl
-digit: 			/0|1|2|3|4|5|6|7|8|9/fraction: 		/.digit+/exponent: 		/(E|e)(+|-)?digit+/floatLiteral:	/digit* fraction exponent? | digit+. | digit+.?exponent/
+digit: 			/0|1|2|3|4|5|6|7|8|9/
+fraction: 		/.digit+/
+exponent: 		/(E|e)(+|-)?digit+/
+floatLiteral:	/digit* fraction exponent? | digit+. | digit+.?exponent/
 ```
 
 # Finite Automata / Finite State Machines
@@ -157,8 +172,12 @@ digit: 			/0|1|2|3|4|5|6|7|8|9/fraction: 		/.digit+/exponent: 		/(E|e)(+|-)?di
 
 A finite automaton consists of a 5-tuple:
 `(Σ,S,T,F,I)`
-- Σ is an alphabet- S is a finite set of states- T is a state transition function: T : S × Σ → S
-- F is a finite set of final or accepting states- I is the start state: I ∈ S.
+
+- Σ is an alphabet
+- S is a finite set of states
+- T is a state transition function: T : S × Σ → S
+- F is a finite set of final or accepting states
+- I is the start state: I ∈ S.
 
 In essence it is just a way to represent a machine/automata/system which has a finite number of states and a fixed set of ways to transition between those state. 
 
@@ -167,21 +186,22 @@ In essence it is just a way to represent a machine/automata/system which has a f
 
 We can represent finite state automata (FA) with Transition graphs. Details below
 
-<img src="trans_graph.png" style="width: 300px">
+<img src="raw/raw/trans_graph.png" style="width: 300px">
 
 Note that a FA will only accept a string x if there is some path on the machine which fits in with the string. I.e if x was hello there must be some path in the machine that starts with h at a valid start state and transitions legally to a end state with o.
 
 ## Example
 ---
 
-<img src="trans_graph_E.png" style="width: 300px">
+<img src="raw/raw/trans_graph_E.png" style="width: 300px">
 
 This state will accept `strings of 0 and 1 with an odd number of 1's`
 
 if we were to break this down into it's 5 tuple we would get this
 
 - Σ : {0,1} 
-- S : {S,A}- T <br>
+- S : {S,A}
+- T <br>
 	: T(S,0) = S<br>
 	: T(S,1) = A<br>
 	: T(A,0) = A<br>
@@ -212,13 +232,15 @@ You are filled with `DETERMINATION`
 #### Deterministic Finite State Automata
 a FA is a DFA if 
 
-- no state has an $\epsilon$-transition, i.e. an transition on an empty string input- for each state s and input symbol a, there isat most one path out of the state. I.e there arn't two paths that you could take. 
+- no state has an \\(\epsilon\\)-transition, i.e. an transition on an empty string input
+- for each state s and input symbol a, there is
+at most one path out of the state. I.e there arn't two paths that you could take. 
 
 #### Nondeterministic Finite State Automata
 a FA is NFA if it is not a DFA i.e
 
 - you can make several parallel transitions on a given input
-- you can have a $\epsilon$ state
+- you can have a \\(\epsilon\\) state
 
 but a NFA still must have Acceptance, the existence of at least one path that leads to a finishing or accepting state.
 
@@ -248,26 +270,27 @@ Note that this is why we want to soon be able to go from a nfa to a dfa. DFA is 
 You can convert RE into NFA's through a series of ways, One of those ways is Thompsons construction. 
 This method is syntax driven, Inductive, and important. 
 
-Inductive just means the cases in the construction of the NFA followthe cases in the definition of REs and important means that if a symbol occurs several times in a RE , a separate NFA is constructed for each occurrence
+Inductive just means the cases in the construction of the NFA follow
+the cases in the definition of REs and important means that if a symbol occurs several times in a RE , a separate NFA is constructed for each occurrence
 
 #### Inductive base
 
-<img src="base.png" style="width: 300px">
+<img src="raw/raw/base.png" style="width: 300px">
 
 #### Inductive step
 suppose N(r) and N(s) are NFAs for REs r and s.
 
-<img src="thomas.png" style="width: 500px">
+<img src="raw/raw/thomas.png" style="width: 500px">
 
 note that `r|s` branches off into two NFA's. Also note that you can take a epsilon path without taking in another token. great for looping. 
  
 The `rs` blends together so you transition from r to s to acceptance. 
 
-the $r^*$ can either skip the NFA or enter into it with a variable number of repeats Before exit. again the repeat happens without needing a specific input token. 
+the \\(r^\*\\) can either skip the NFA or enter into it with a variable number of repeats Before exit. again the repeat happens without needing a specific input token. 
 
 #### Example
 
-Converting $(0|10^{∗}1)^∗10^∗$ to an NFA
+Converting \\((0|10^{∗}1)^∗10^∗\\) to an NFA
 
 now we have some rules on how to handle r|s rs and r* so lets break this down into those terms
 
@@ -279,7 +302,7 @@ A* -- 1 --> B*
 
 and as we know *'s are represented with 4 states, something like this
 
-<img src="step1.png" style="width: 300px">
+<img src="raw/raw/step1.png" style="width: 300px">
 
 Where you can go from one state to the next then check if you are done and if not keep looping. There is also of course the option to skip as this is a * not a +.
 
@@ -287,7 +310,7 @@ now using this we can evaluate B quite easily. note the numbers on the states ar
 
 0* is represented as 
 
-<img src="step2.png" style="width: 300px">
+<img src="raw/raw/step2.png" style="width: 300px">
 
 We enter in, and we can either skip if there is no 0 or register the 0 as many times as there is one. Once it's done we go to the terminal state. 
 
@@ -296,7 +319,7 @@ A is more complex. We have (0|10*1) which we need to break up into two branches 
 so we start the loop, either branch into 0 or 1 -> 0* -> 1 and then at the end of both loop back and repeat the branch. 
 Thus we get this at the end
 
-<img src="final.png" style="width: 500px">
+<img src="raw/raw/final.png" style="width: 500px">
 
 
 ## Subset construction NFA to DFA
@@ -305,9 +328,9 @@ Thus we get this at the end
 It's actually very difficult to go from a RE to DFA directly but going first to a NFA then to a DFA is very possible, especially in code. 
 Why would we want to do this? NFA's are easy to generate in code but not as efficient to execute as DFA's for similar reasons we usually take a DFA and minimise it to further increase the speed and efficiency of the graph. (as well as this DFA's are way better to run in code because they are deterministic and give consistent results)
 
-Note this algorithm is called subset construction because a DFA state corresponds to a subset of NFA states. This is because in DFA we can't have $\epsilon$ so part of this is compressing those and reducing the total number of states as a result 
+Note this algorithm is called subset construction because a DFA state corresponds to a subset of NFA states. This is because in DFA we can't have \\(\epsilon\\) so part of this is compressing those and reducing the total number of states as a result 
 
-There are at most $2^n$ DFA states, where $n$ is the total number of the NFA states. This is because sometimes the conversion does increase the number of states in attempting to make a deterministic graph.
+There are at most \\(2^n\\) DFA states, where \\(n\\) is the total number of the NFA states. This is because sometimes the conversion does increase the number of states in attempting to make a deterministic graph.
 
 #### Operations
 
@@ -316,16 +339,17 @@ Note that T is a set of NFA states and s is a single NFA state
 
 OPERATION | DESCRIPTION
 --- | ---
-$\epsilon$-closure(`s`) | the set of states that you can get to from a given state `s` via a $\epsilon$ link/transition$\epsilon$-closure(T) | Same as above but takes in a set and checks every s
+\\(\epsilon\\)-closure(`s`) | the set of states that you can get to from a given state `s` via a \\(\epsilon\\) link/transition
+\\(\epsilon\\)-closure(T) | Same as above but takes in a set and checks every s
 move(T , `a`) | Looks through all the states in T and finds all the states you can get to via a `a` transition. I.e every state you can get too from a given set of states if the input character was `a`
 
 #### Algorithm
 
-1. Create the start state of the DFA by taking the $\varepsilon$-closure of the start state of the NFA.
+1. Create the start state of the DFA by taking the \\(\varepsilon\\)-closure of the start state of the NFA.
 2. Perform the following for the new DFA state: 
 	- For each possible input symbol:
 		- Apply move(T,a) to the newly-created state and the input symbol; this will return a set of states.
-		- Apply the $\varepsilon$-closure to this set of states, possibly resulting in a new set.
+		- Apply the \\(\varepsilon\\)-closure to this set of states, possibly resulting in a new set.
 	- This set of NFA states will be a single state in the DFA.
 3. Each time we generate a new DFA state, we must apply step 2 to it. The process is complete when applying step 2 does not yield any new states.
 4. The finish states of the DFA are those which contain any of the finish states of the NFA.
@@ -334,7 +358,7 @@ move(T , `a`) | Looks through all the states in T and finds all the states you c
 
 Here is a small example
 
-<img src="dfa.png" style="width: 300px">
+<img src="raw/raw/dfa.png" style="width: 300px">
 
 the overall code is something like this
 
@@ -346,7 +370,7 @@ for state in todo:
 			todo.append(new)
 		finalGraph((state, input)) = new
 ```
-What we did here was take state 1 and throw it into the $epsilion$-closure function to get the set of states that you can get to via a epsilion transition, this is just 1 in this case, a empty string can only result in the state staying the same as there is no epsilon path. 
+What we did here was take state 1 and throw it into the \\(epsilion\\)-closure function to get the set of states that you can get to via a epsilion transition, this is just 1 in this case, a empty string can only result in the state staying the same as there is no epsilon path. 
 
 so lets say `todo = [1]`
 
@@ -406,7 +430,12 @@ You can understand the basis of how this works without even needing the mathemat
 #### Definition
 
 given a original NFA with (Σ, S, T, F, s0)
-The resultant DFA is:• The alphabet: Σ• The states: all states in our finalGraph• The start state: ε-closure(s0)• The accepting states: all states in DFAstates containing at least one accepting state from the original NFA• The transitions: All the transitions in the final graph
+The resultant DFA is:
+• The alphabet: Σ
+• The states: all states in our finalGraph
+• The start state: ε-closure(s0)
+• The accepting states: all states in DFAstates containing at least one accepting state from the original NFA
+• The transitions: All the transitions in the final graph
 
 ##  Minimising DFA Statements
 ---
@@ -414,21 +443,22 @@ This is just the process to take a DFA and minimise it down to it's simplest for
 
 #### Algorithm
 
-Initially, let $\Pi$ be the partition with the two groups:
+Initially, let \\(\Pi\\) be the partition with the two groups:
 
-1. one is the set of all final states2. the other is the set of all non-final states
+1. one is the set of all final states
+2. the other is the set of all non-final states
 
-Let $\Pi_{new} = \Pi$
+Let \\(\Pi_{new} = \Pi\\)
 
-for each group G in $\Pi_{new}$:
+for each group G in \\(\Pi_{new}\\):
 - Create subgroups from G that group together states with identical transitions to states within G.
-replace G in $\Pi_{new}$ by the set of subgroups formed
+replace G in \\(\Pi_{new}\\) by the set of subgroups formed
 
  Begins with the most optimistic assumption
  
  observe below
  
- <img src="min.png" style="width: 300px">
+ <img src="raw/raw/min.png" style="width: 300px">
  
  the DFA is first split into 2 groups
  
@@ -457,23 +487,36 @@ This can generate any scanner given a arbitrary set of regex tokens.
 How jflex works is it takes in a spec in the form
 
 ```
-	user code  	%%  	Jflex directives  	%%  	regular expression rules
+	user code
+  	%%
+  	Jflex directives
+  	%%
+  	regular expression rules
 ```
 
 an example is
 
-```
-	some user code  	%%  	LETTER=[A-Za-z_]  	DIGIT=[0-9]  	%%  	"if"  { return new Token(Token.IF, "if", pos); }  	"<"   { return new Token(Token.LT, "<", pos); }  	"<="  { return new Token(Token.LE, "<=", pos); }  	{LETTER}({LETTER}|{DIGIT})*   	     { return new Token(Token.ID, "itsSpelling", pos); }
+```java
+	some user code
+  	%%
+  	LETTER=[A-Za-z_]
+  	DIGIT=[0-9]
+  	%%
+  	"if"  { return new Token(Token.IF, "if", pos); }
+  	"<"   { return new Token(Token.LT, "<", pos); }
+  	"<="  { return new Token(Token.LE, "<=", pos); }
+  	{LETTER}({LETTER}|{DIGIT})*
+   	     { return new Token(Token.ID, "itsSpelling", pos); }
 ```
 
 This matches as much as possible into 1 token and also will take the first match if in the list of token regexs you give multiple match with a given input. 
 so first we create a NFA
 
-<img src="nfa_e.png" style="width: 300px">
+<img src="raw/raw/nfa_e.png" style="width: 300px">
 
 then we generate a DFA (note this is already minimal so we can skip that step)
 
-<img src="minimal_state_dfa.png" style="width: 300px">
+<img src="raw/raw/minimal_state_dfa.png" style="width: 300px">
 
 Note you can represent every DFA as a transition table (refer to the video in the section above
 
@@ -482,17 +525,38 @@ Note though these are usually spase as some will be empty and thus represent err
 Now what jflex does is actually SIMULATE a DFS through code without actually generating one. 
 
 ```java
- state = initial_state  while (TRUE) {    next_state = T[state][current_char];    if (next_state == ERROR)  // cannot move any further      break;    state = next_state;    if (current_char == EOF)  // input exhausted      break;    current_char = getchar(); // fetch the next char  }  Backtrack to the most recent accepting state  if (such a state exists)    /* return the corresponding token       reset current_char to the first after the token*/ else    lexical_error(state);
+ state = initial_state
+  while (TRUE) {
+    next_state = T[state][current_char];
+    if (next_state == ERROR)  // cannot move any further
+      break;
+    state = next_state;
+    if (current_char == EOF)  // input exhausted
+      break;
+    current_char = getchar(); // fetch the next char
+  }
+  Backtrack to the most recent accepting state
+  if (such a state exists)
+    /* return the corresponding token
+       reset current_char to the first after the token
+*/ else
+    lexical_error(state);
 ```
 
 ## Limitations of RE
 ---
 
-- Cannot “count”- Cannot recognise palindromes (e.g., racecar & rotator)- The language of the balanced parentheses {(n)n |n􏰀1}is not a regular language and can't be encoded in RE	- but this can be specified by a CFG (covered Week 3)
+- Cannot “count”
+- Cannot recognise palindromes (e.g., racecar & rotator)
+- The language of the balanced parentheses {(n)n |n􏰀1}
+is not a regular language and can't be encoded in RE
+	- but this can be specified by a CFG (covered Week 3)
 
 ## Chomsky’s Hierarchy
 ---
 
-Depending on the form of production$\alpha → \beta$four types of grammars (and accordingly, languages) are distinguished:
+Depending on the form of production
+\\(\alpha → \beta\\)
+four types of grammars (and accordingly, languages) are distinguished:
 
-<img src="chomp.png" style="width: 500px">
+<img src="raw/raw/chomp.png" style="width: 500px">

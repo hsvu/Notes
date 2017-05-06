@@ -9,7 +9,11 @@ Assignment 5 : week 12
 
 The 5 assignments build upon one another:
 
-1. Scanner – reads text and produces tokens2. Recogniser – reads tokens and checks syntax errors3. Parser– builds abstract syntax tree (AST)4. Static Semantics – checks semantics at compile time5. Code Generator – generates Java bytecode
+1. Scanner – reads text and produces tokens
+2. Recogniser – reads tokens and checks syntax errors
+3. Parser– builds abstract syntax tree (AST)
+4. Static Semantics – checks semantics at compile time
+5. Code Generator – generates Java bytecode
 
 Tutorials start week 3
 
@@ -33,14 +37,14 @@ This then goes through the Semantic analyser to produce a decorated tree. At thi
 Immediate code generator creates the IR (Intermediate Represetnation) which can then be fed into code optimization and code generators (out of the scope of this course lmao)
 Note that the decorates AST can be passed directly into the code optimization stage. 
 
-<img src="typ_struc.png" style="width: 500px; height: 400px">
+<img src="raw/raw/typ_struc.png" style="width: 500px; height: 400px">
 
 #### Examples
 ---
 
 Here you should note that the decorated tree simply adds in the step to convert the int literal to a float because all values in this register based machines are floats. 
 
-<img src="E_1_1.png" style="width: 500px; height: 400px">
+<img src="raw/raw/E_1_1.png" style="width: 500px; height: 400px">
 
 Now we can move this tree into code form by shifting it first into a IR
 
@@ -54,7 +58,8 @@ You may already notice that here the code is a bit inefficient.
 rather then moving 60 into a temp we can multiply it by id3 directly. And rather then assinging id2 * Temp2 to Temp 3 only to have that reassigned to id1 we can just assign it directly to id1
 
 ```
-Temp2 = id3 ∗ 60.0id1 = id2 + Temp2
+Temp2 = id3 ∗ 60.0
+id1 = id2 + Temp2
 ```
 
 This now can be used to generate some machine code as it is split up into simple single arithamtic steps. Note that this is the main step that relys on specific chip arcitecture and thus this step will need to know if there is a multiply by immediate command or not. 
@@ -70,7 +75,7 @@ MOVF R1, position
 
 Take a look at this example for the java compiler
 
-<img src="E_2_1.png"  style="width: 300px; height: 400px">
+<img src="raw/raw/E_2_1.png"  style="width: 300px; height: 400px">
 
 Here we have assignment expressions (`AssExp` lol) which splits up the expression into a left side and right side. I.e left = right or `position = initial + rate * 60`
 This is then split into a simple variable called position to the left and a binary expression to the right. 
@@ -84,10 +89,11 @@ Note the need to know what variabels are simple because in java sometimes variab
 THe idea is that multiple different languages can be compiled into the same IR using multiple front ends. 
 Once in this form you can use generic IR optimization tools and then feed this ir into different back ends depending on the system
 
-<img src="D_1.png" style="width: 300px; height: 200px">
+<img src="raw/raw/D_1.png" style="width: 300px; height: 200px">
 
 This means we can simplify retargeting using this "everybody gets the same IR" thing
-M languages + N architectures -> M frontends + N backends notMN frontends + NN backends
+M languages + N architectures -> M frontends + N backends not
+MN frontends + NN backends
 
 
 #### Overview
@@ -108,7 +114,13 @@ position = initial + rate * 60
 
 splits into 7 tokens
 
-1. The identifier position2. The assignment operator =3. The identifier initial4. The plus sign5. The identifier rate6. The multiplication sign7. The integer constant 60.
+1. The identifier position
+2. The assignment operator =
+3. The identifier initial
+4. The plus sign
+5. The identifier rate
+6. The multiplication sign
+7. The integer constant 60.
 
 The key issue with this is speed. You need it to be fast but it is a inherently slow process. 
 
@@ -136,7 +148,9 @@ A context free grammer is just a grammer that does not depend on context amazing
 anyway usually the typical grammer is defined
 
 ```
-⟨expr⟩ → ⟨expr⟩ + ⟨term⟩ | ⟨expr⟩ − ⟨term⟩ | ⟨term⟩⟨term⟩ → ⟨term⟩ ∗ ⟨factor⟩ | ⟨term⟩ / ⟨factor⟩ | ⟨factor⟩⟨factor⟩ → ( ⟨expr⟩ ) | ID | INTLITERAL
+⟨expr⟩ → ⟨expr⟩ + ⟨term⟩ | ⟨expr⟩ − ⟨term⟩ | ⟨term⟩
+⟨term⟩ → ⟨term⟩ ∗ ⟨factor⟩ | ⟨term⟩ / ⟨factor⟩ | ⟨factor⟩
+⟨factor⟩ → ( ⟨expr⟩ ) | ID | INTLITERAL
 ```
 This just says that a expression is either a expression + a term, a expression - a term or a term. 
 so something like `7 + 5 - 8` breaks down as such
@@ -157,7 +171,9 @@ and finally that a factor is either a expression, an id to some memory, or a lit
 This is when we get to the Static Semanatics section of the compiler.
 
 suprise suprise it checks the program for semantic errors
-1. variables defined before used2. operands called with compatible types3. procedures called with the right number and types of arguments
+1. variables defined before used
+2. operands called with compatible types
+3. procedures called with the right number and types of arguments
 
 It also does a incredibly important task. `Type checking`
 
@@ -172,8 +188,11 @@ The IR isn't like universally defined but it must be easy to generate while also
 This usually is the place where subtle small changes effect the speed and effectivness of a compiler. 
 
 Popular IRs:
-1. Abstract Syntax trees (ASTs)
-	Note that this means that the parser tree is edited minimally.2. Directed acyclic graphs (DAGs)3. Postfix notation4. Three address code (3AC or quadruples)
+1. Abstract Syntax trees (ASTs)
+	Note that this means that the parser tree is edited minimally.
+2. Directed acyclic graphs (DAGs)
+3. Postfix notation
+4. Three address code (3AC or quadruples)
 
 #### Optimization
 
@@ -182,8 +201,12 @@ Some common optimization is to remove code that can never be reached, discover s
 #### Generation
 
 
-- generates target code: either relocatable machine code or assembly code- chooses instructions for each IR operation- decide what to keep in registers at each point
-A crucial aspect is the assignment of variables to registers.
+- generates target code: either relocatable machine code or assembly code
+- chooses instructions for each IR operation
+- decide what to keep in registers at each point
+
+A crucial aspect is the assignment of variables to registers.
+
 
 #### Errors
 
@@ -206,7 +229,7 @@ We can optionally implement error recovery in your parser.
 #### The Role of a scanner
 ---
 
-<img src="D_2.png" style="width: 500px; 500px;">
+<img src="raw/raw/D_2.png" style="width: 500px; 500px;">
 
 Due to this structure usually the scanner runs as a sub routine within the parser
 
@@ -221,7 +244,8 @@ import java.util.*;
 // the third is if the delimator should be included in the token or not
 StringTokenizer s = new StringTokenizer("(02) 9385 4889", "() ", false);
 
-while (s.hasMoreTokens())  System.out.println(s.nextToken());
+while (s.hasMoreTokens())
+  System.out.println(s.nextToken());
 ```
 
 You can have different tokens depending on the language. In english tokens are words and can be classified as noun tokens or verb tokens etc. 
@@ -229,8 +253,14 @@ You can have different tokens depending on the language. In english tokens are w
 In VC (variant of C) there are 5
 
 1. identifiers
-	a. This is just variables2. keywords
-	a. int, if, while, etc 3. operators	a. “+” or “∗”, “<=” ...4. separators	a. “{”, ‘}”, “;” ...5. literals
+	a. This is just variables
+2. keywords
+	a. int, if, while, etc 
+3. operators
+	a. “+” or “∗”, “<=” ...
+4. separators
+	a. “{”, ‘}”, “;” ...
+5. literals
 	a. integer, real, boolean and string constants
 
 Now you define tokens with regex patterns (just called patterns in the context of compilers) but do note you can do assignment 1 `without regex`
@@ -247,34 +277,53 @@ There is also a formal system for defining tokens revolving around finate state 
 we can represent tokens as such
 
 ```
-Token                   Representation------------------------------------------------------------sum      new Token(Token.ID, "sum", sourcePosition);123      new Token(Token.INTLITERAL, "123", sourcePosition);1.1      new Token(Token.FLOATLITERAL, "1.1", sourcePosition);+        new Token(Token.PLUS, "+", sourcePosition);,        new Token(Token.COMMA, ",", sourcePosition);
+Token                   Representation
+------------------------------------------------------------
+sum      new Token(Token.ID, "sum", sourcePosition);
+123      new Token(Token.INTLITERAL, "123", sourcePosition);
+1.1      new Token(Token.FLOATLITERAL, "1.1", sourcePosition);
++        new Token(Token.PLUS, "+", sourcePosition);
+,        new Token(Token.COMMA, ",", sourcePosition);
 ```
 
 SourcePosition is an instance of the Class SourcePosition and has these fields:
-- charStart: the beginning column position of the token- charFinish: the ending column position of the token- lineStart=lineFinish: the number of the line where the token is found.
-note you can have the scanner return a error token if it reaches some text that it does not have a matching pattern for. This can thus raise a `lexical error`. This would happen with a string with no end " as this isn't a valid token at all! some examples from VC:
+- charStart: the beginning column position of the token
+- charFinish: the ending column position of the token
+- lineStart=lineFinish: the number of the line where the token is found.
 
-```/*  -> prints an error message (unterminated comment)|, ^, %, etc.   -> returns an error token and continues lexical analysis
+note you can have the scanner return a error token if it reaches some text that it does not have a matching pattern for. This can thus raise a `lexical error`. This would happen with a string with no end " as this isn't a valid token at all! some examples from VC:
+
+```
+/*  -> prints an error message (unterminated comment)
+|, ^, %, etc.   -> returns an error token and continues lexical analysis
 ```
 
 note how we can't recover from a untermined comment because it could very well comment out all the code in the document. 
-now there are many different ways to create a scanner but 2 things must always be true when the scanner is calle to produce a token. 
-1. currentChar is pointing to either the beginning of whitespace, a comment or a token. 
-2. The pattern must always be a greedy match. Always match the longest possible string. ">=" not ">"
+now there are many different ways to create a scanner but 2 things must always be true when the scanner is calle to produce a token. 
+1. currentChar is pointing to either the beginning of whitespace, a comment or a token. 
+2. The pattern must always be a greedy match. Always match the longest possible string. ">=" not ">"
 
 #### Design Issues in Hand-Crafting a Scanner (for VC)
 ---
-1. What are the tokens of the language?
+1. What are the tokens of the language?
 
-	`see Token.java`2. Are keywords reserved?
-	`yes in VC, as in C and Java`3. How to distinguish identifiers and keywords?
-	`see Token.java`4. How to handle the end of file
-	`return a special Token`5. How to represent the tokens?
-	`see Token.java`6. How to handle whitespace and comments?
-	`throw them away`7. What is the structure of a scanner?
-	`see Scanner.java`8. How to detect and recover from lexical errors?
+	`see Token.java`
+2. Are keywords reserved?
+	`yes in VC, as in C and Java`
+3. How to distinguish identifiers and keywords?
+	`see Token.java`
+4. How to handle the end of file
+	`return a special Token`
+5. How to represent the tokens?
+	`see Token.java`
+6. How to handle whitespace and comments?
+	`throw them away`
+7. What is the structure of a scanner?
+	`see Scanner.java`
+8. How to detect and recover from lexical errors?
 
-	`have partial token matches to detect them and possible fix them by adding in a missing "?`9. How many characters of lookahead are needed to recognise a token?
+	`have partial token matches to detect them and possible fix them by adding in a missing "?`
+9. How many characters of lookahead are needed to recognise a token?
 
 	`depends on the token, for a exponent it's 3 and for i++ it's 2`
 
