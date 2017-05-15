@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "Compiling Base Course"
+echo "" > COMP3891.md
+for i in $(ls src/Lecture_*/*.md)
+do
+	lecNum=$(echo $i | cut -d'/' -f2)
+	cat $i | sed "s/\(<img.*\)src=\([\"\']\)\(raw\/\)*\([^ ]*\)/\1src=\2src\/$lecNum\/\4/g" | sed "s/<br>//g" >> COMP3891.md
+done
+echo "Compiling Extended Course"
+echo "" > COMP3891_EXT.md
+for i in $(ls ext-src/EXT*/*.md)
+do
+	lecNum=$(echo $i | cut -d'/' -f2)
+	cat $i | sed "s/\(<img.*\)src=\([\"\']\)\(raw\/\)*\([^ ]*\)/\1src=\2src\/$lecNum\/\4/g" | sed "s/<br>//g" >> COMP3891_EXT.md
+done
