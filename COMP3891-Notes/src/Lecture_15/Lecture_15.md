@@ -13,7 +13,7 @@ The memory splits into program code (text) data (stack) and buffers held in the 
 The os has the job of keeping track of how and where memory is used between it's users. It must also must manage the transfer of memory between RAM and disk. 
 
 > Sometimes the OS moves ram into secondary storage to give more ram access to users
-s
+
 There are two broad classes of memory systems
 
 1. those that transfer processes to and from externel storage (called swapping or `paging`)
@@ -164,7 +164,99 @@ logical addressed refer to specific locations within the program, once running t
     -  We can ask the compiler to generate relocatable code, basically changes all the addresses to like labels which can be replaced by a actual addresses when it's loaded in by the OS to be run. 
     -  This takes longer to run a program cause we have to patch the bunary to bind the addresses. 
 3. Run time
-    - Logical compile time addresses translated to physical addresses by special hardware. it goes "he thinks he's running 0x"
+    - Logical compile time addresses translated to physical addresses by special hardware. It goes "he thinks he's running 0x4544 but really we are gonna grab the memory from 0x2922"
+
+#### Hardware Support for Runtime Binding and Protection
+
+The process has a logical address space from 0 to max mem. 
+In the translation we need to add a appropriate offset to achieve relocation.
+
+We must limit the maximum logical address to protect memory higher then the process B (i.e overflow). Note that because the offset is added on then there is no way the process can access memory before it. 
+
+To do this we use a Base limit or base and bound machines.  
+
+<img src="D_4.png" style="width: 400px">
+
+the check makes sure the address is correct, if not it raises a trap into the operating system so it can tell the user it fucked up a memory access. 
+Otherwise it does the offset via a relocation register and continues on it's merry way. 
+
+So this hardware has registers called Relocation and limit registers or base and bound registers. Which obviously set the base and the bound of the process. 
+
+These registers can be used to relocate the currently active process but must be updated at load time, reloaction (comapction time) and on a context switch as the current process changes (and this the process base and limit is different)
+
+This provides us with protection (processes can't access each other) and the ability to do compaction. Of course physical memory allocation must still be contiguous, a process must need a contigious peice of memory and you can't run any process bigger then ram even if it never uses ALL of ram at one time. 
+we also can't support partial sharing of address spaces, no shared code, libraries, or data structures between processes. Multi application coperating on a common task is really hard. 
+
+## TimeSharing
+---
+
+Within a timesharing machine there will be a mix of active and inactive processes. So if we can only use 4 processes in our machine but most of them will be inactive we want ot handle that!
+
+So in order to support more processes we use something called swapping. 
+
+#### Swapping
+
+The action of swapping a process out of memory to a backing store to give us space for another process then switching it back for continued execution. 
+
+We call it swapping because when me move a process into the backing store we swap one that it's in the backing store in. 
+
+The major issue with this is the overhead of copying an entire program into disk and back is incredible. This is super slow but it was good when computers were expencive so the slowness was better then buying another computer. 
+
+## Virtual Memory
+---
+
+#### Application
+
+So far we can not handle any process is larger that's larger then ram. 
+We can always solve this (as dos did) by just pushing the issue back to the application. Some stuff like autocad which was built knowing that only some parts of it would be in ram at any time. Basically it would copy code into buffer, then run it, then over ride it then run it.
+
+You had to craft the system so you know what functions are needed in memory at what time and what is relient on what. 
+
+There was sometimes a overlay driver which made this a bit easier, but it was still tedious and error prone
+
+#### Intro
+
+Thus virtual memory was born, there are 2 types
+1. Paging
+2. Segmentation
+
+Paging is now the cominent one of the two, although some architectures support hybrids. 
+
+It's called virtual memory because the memory abstraction provdied to applications with a simple contigious memory segement that did not reflect actual physical memory. It lets the program think it has the machine to itself. 
+
+#### Paging
+
+Here an application assumes it has an address space that's available everytime it runs. This is split up into logical virtual page size, this is fixed by the hardware. This is always a power of 2. Now each of these is associated with a physical frame but not every single one needs to be. 
+
+> Virtual pages do not *NEED* to have a physical page frame assoicated with it. 
+
+The pagse frame is equal to the virtual page size. 
+
+The physical memory does NOT have to be contiguous which gives us a lot of advantages. 
+
+<img src="D_5.png" style="width: 400px">
+
+The virtual space is simple, contigious, but the hardware translates between these virtual and physical page. 
+
+Note that because we don't enforce physical contingious allocation we can limit fragmentation by allocating frames wherever they are free to a process. Doesn't matter where they are we don't need them to be contigious. 
+
+We get 0 external fragmentation and very little internal fragmentation. 
+
+With this what we get is each process having it's own page table which links it's virtual pages to physical pages. 
+
+In addition we also have a Free frame list of all the physical page that are free.
+This also allows sharing of memory as multiple virtual memory pages can point to the same physical one. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
