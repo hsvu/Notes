@@ -41,7 +41,7 @@ proper prefix suffix, substring of s | Any nonempty string x that is, respective
 
 We can also concatenate strings, if we have \\(x\\) and \\(y\\) adding y onto x or concatenating x and y gives us \\(xy\\)
 
-if x is key and y is work xy is keyword. 
+if x is key and y is word xy is keyword. 
 
 Not too complicated, but do note that with this we have this property with \\(\epsilon\\)
 
@@ -81,7 +81,7 @@ You can formally define regular expressions in two steps, the inductive base (se
 ## Inductive Base
 ---
 1. \\(\epsilon\\) is a RE, denoting the RL {\\(\epsilon\\)}
-2. a ∈ Σ is a RE,denoting the RL{a}f
+2. a ∈ Σ is a RE,denoting the RL{a}
 
 In simple terms, \\(\epsilon\\) represents a set of empty strings so the regular expression "" matching nothing. 
 And in addition a regular expression with just a symbol defines a set with that symbol. i.e it can only match with every instance of that symbol. 
@@ -96,7 +96,7 @@ Now we can start forming the regular expression language while linking it to our
 1. (r)|(s) is a RE, denoting the RL L(r) \\(\cup\\) L(s)
 2. (r)(s) is a RE, denoting the RL concatination L(r)L(s) 
 3. (r)∗ is a RE, denoting the RL kleene closure L(r)∗
-4. (r) is a RE, denoting the RL postive closure L(r)
+4. (r)+ is a RE, denoting the RL postive closure L(r)+
 
 ## Rules
 ---
@@ -222,7 +222,7 @@ A -- 1 --> S
 Remember that T is a function S×Σ to S.
 But aside from this we also need to consider invalid input.
 
-Lets sat that A -- 0 --> A wasn't defined and suddenly we get to the point where we need to calculate T(A, 0). Although this isn't on the graph it is implied to be = to error. These extra error transitions arn't drawn on but implied, by convention at least. 
+Lets say that A -- 0 --> A wasn't defined and suddenly we get to the point where we need to calculate T(A, 0). Although this isn't on the graph it is implied to be = to error. These extra error transitions arn't drawn on but implied, by convention at least. 
 
 ## Determinism
 ---
@@ -294,7 +294,7 @@ Converting \\((0|10^{∗}1)^∗10^∗\\) to an NFA
 
 now we have some rules on how to handle r|s rs and r* so lets break this down into those terms
 
-Let (0|10\*1) be A and 0 be B
+Let (0|10\*1) be A and 0 be B (folliwing precendence)
 
 thus we get
 

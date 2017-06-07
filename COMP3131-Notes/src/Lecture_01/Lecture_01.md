@@ -19,12 +19,15 @@ Tutorials start week 3
 
 Work on the assignments should be consistent in leu of regular labs. There are 5 and the first is due in week 3 before the first tutorial. Start working on it in week 1./Set aside a regular amount of time maybe 4-10 hours a week to consistently work on the next assignment. 
 
+> Future zain comment: The assignments get progressively harder, the first 3 you can do in a day or so but the last 2 you should give at least 4-5 days. 
+
 # Compiler overview
 #### What is a compiler
 ---
 It is just a program to take in code and produce Machine code / other representation of code usually at a lower level of abstraction. In doing this the compiler will output errors and warnings to the user. 
 
-This is because as well as just compiling down a language a compiler must be able to reocgnise what a legal program is and ensure that it only produces legal programs. 
+This is because as well as just compiling down a language a compiler must be able to recognise what a legal program is and ensure that it only produces legal programs. 
+
 It may generate a program that does not have the expected behavior but it should not produce code that can not run. 
 
 Although not always true a compiler should strive to generate optimal and efficient code wherever possible. 
@@ -32,19 +35,23 @@ Although not always true a compiler should strive to generate optimal and effici
 #### Typical Compiler structure
 ---
 We take in code and we start by feeding it into a scanner. This will split the code into tokens. 
-These tokens are then passed into he parser which produces a abstract syntax tree, A tree representation of the code that holds the syntactical meaning of the original code. 
-This then goes through the Semantic analyser to produce a decorated tree. At this point the analysis stage of the compilation is over and the compiler now moves into the synthesis stage. 
-Immediate code generator creates the IR (Intermediate Represetnation) which can then be fed into code optimization and code generators (out of the scope of this course lmao)
-Note that the decorates AST can be passed directly into the code optimization stage. 
 
-<img src="raw/raw/typ_struc.png" style="width: 500px; height: 400px">
+These tokens are then passed into the parser which produces a abstract syntax tree, A tree representation of the code that holds the syntactical meaning of the original code. 
+
+This then goes through the Semantic analyser to produce a decorated tree. At this point the analysis stage of the compilation is over and the compiler now moves into the synthesis stage. 
+
+Immediate code generator creates the IR (Intermediate Represetnation) which can then be fed into code optimization and code generators (out of the scope of this course lmao)
+
+Note that the decorated AST can be passed directly into the code optimization stage. 
+
+<img src="raw/typ_struc.png" style="width: 500px; height: 400px">
 
 #### Examples
 ---
 
 Here you should note that the decorated tree simply adds in the step to convert the int literal to a float because all values in this register based machines are floats. 
 
-<img src="raw/raw/E_1_1.png" style="width: 500px; height: 400px">
+<img src="raw/E_1_1.png" style="width: 500px; height: 400px">
 
 Now we can move this tree into code form by shifting it first into a IR
 
@@ -64,6 +71,8 @@ id1 = id2 + Temp2
 
 This now can be used to generate some machine code as it is split up into simple single arithamtic steps. Note that this is the main step that relys on specific chip arcitecture and thus this step will need to know if there is a multiply by immediate command or not. 
 
+> The fact that only one section of the compiler requires hardware knowledge means that a language and it's assoicated compiler can be ported to many different machines. 
+
 
 ```
 MOVF rate, R2
@@ -82,16 +91,18 @@ This is then split into a simple variable called position to the left and a bina
 
 a binary expression being a expression with 2 variables involved. 
 this contines to be split down untill we have the syntax tree. 
-Note the need to know what variabels are simple because in java sometimes variables may be more complex such as objects/pointers 
+
+Note that we need to know what variables are simple because in java sometimes variables may be more complex such as objects/pointers. 
 
 #### Retargetble compilers
 ----
-THe idea is that multiple different languages can be compiled into the same IR using multiple front ends. 
+The idea is that multiple different languages can be compiled into the same IR using multiple front ends. 
 Once in this form you can use generic IR optimization tools and then feed this ir into different back ends depending on the system
 
 <img src="raw/raw/D_1.png" style="width: 300px; height: 200px">
 
 This means we can simplify retargeting using this "everybody gets the same IR" thing
+
 M languages + N architectures -> M frontends + N backends not
 MN frontends + NN backends
 

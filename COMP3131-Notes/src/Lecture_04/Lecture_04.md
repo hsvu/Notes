@@ -3,7 +3,8 @@
 ## Lookahead Token(s)
 ---
 The currently scanned token(s) in the input. In Recogniser.java, currentToken represents the lookahead token
-For most programming languages, one token lookahead only.Initially, the lookahead token is the leftmost token in the input.
+For most programming languages, one token lookahead only.
+Initially, the lookahead token is the leftmost token in the input.
 
 ## Top Down Parsing
 ---
@@ -24,7 +25,11 @@ Note this is why we call it the lookahead symbol, it's been read from the file b
 
 Flow-of-control constructs, with their distinguishing keywords, are detectable this way, e.g. in the VC grammar:
 
-```⟨stmt⟩ → ⟨compound-stmt⟩	| if ”(” ⟨expr⟩ ”)” (ELSE ⟨stmt⟩)?	| break ”;”	| continue ”;”
+```
+⟨stmt⟩ → ⟨compound-stmt⟩
+	| if ”(” ⟨expr⟩ ”)” (ELSE ⟨stmt⟩)?
+	| break ”;”
+	| continue ”;”
 	| ...
 ```
 Prediction happens before the actual match begins! the code can look at the lookahead symbol and be able to tell which of the multiple cases to go to i.e it can see if the next symbol is a if or a break or a continue. 
@@ -40,7 +45,8 @@ B → ···
 lookahead token: a
 ```
 
-The leftmost derivation:`S -> lm aA`
+The leftmost derivation:
+`S -> lm aA`
 Thus we select the first alternative aA
 
 How about here?
@@ -48,7 +54,8 @@ How about here?
 ```
 S → Ab|Bc
 A → Df | CA
-B → gA | eC → dC | c
+B → gA | e
+C → dC | c
 D → h | i
 
 sentence: gchfc
@@ -186,7 +193,8 @@ First(ABC) = {e,f,g,h,p,q,\\(\epsilon\\)}
 ```
 S → Ab|Bc
 A → Df | CA
-B → gA | eC → dC | c
+B → gA | e
+C → dC | c
 D → h | i
 
 sentence: gchfc
@@ -235,7 +243,7 @@ we go S->aAb then A->epsilon
 when we have aAb our logic would go "alright we have a, the lookahead symbol is now b, how can we convert A into b" and would crash. BUT if we said "alright well Follow(A) = {b} lets just have A go to epsilon to get our lookahead token in a round about way"
 
 Follow sets constructed only for nonterminals and by convention, assume every input is terminated by a special end marker (i.e., the EOF marker), denoted by `$`
-Follow sets do not contain \\(\epsilon\\)
+Follow sets do not contain \\(\epsilon\\)
 
 #### Defintion
 
@@ -275,7 +283,8 @@ recall grammar 1
 
 ```
 E → E+T | E−T |T
-T → T∗F | T/F | FF → INT | (E)
+T → T∗F | T/F | F
+F → INT | (E)
 ```
 
 get Follow(E).
@@ -309,7 +318,9 @@ In the case there are no epsilons the first is more then enough because the foll
 
 The select set for a production \\(A\rightarrow \alpha\\):
 
-1. If \\(epsilon\\) is in First(α), then	- Select(A→\\(\epsilon\\)) = (First(\\(\alpha\\)) − {\\(\epsilon\\)}) \\(\cup\\) Follow(A)2. Otherwise:
+1. If \\(epsilon\\) is in First(α), then
+	- Select(A→\\(\epsilon\\)) = (First(\\(\alpha\\)) − {\\(\epsilon\\)}) \\(\cup\\) Follow(A)
+2. Otherwise:
 	- Select(A→\\(\epsilon\\)) = First(\\(\epsilon\\))
 
 This assumes that the production you give it to be used in some derivation. Thus, the Select not needed if A has has one alternative i.e A -> a this is obvious, we don't need to make a decision her so a select set is useless. 
@@ -317,8 +328,10 @@ This assumes that the production you give it to be used in some derivation. Thus
 ## Predictive Recursive Descent 
 ---
 
-Predictive (or non-backtracking): the parser always predicts the right production to use at every derivation stepRecursive, a parsing method may call itself recursively either directly or indirectly. i.e A -> A+A
-Descent: the parser builds the parse tree (or AST) by descending through it as it parses the program. In this case we think of the parse tree as already existing implicitly in the code and as we read through it we traverse this imaginary tree. 
+Predictive (or non-backtracking): the parser always predicts the right production to use at every derivation step
+
+Recursive, a parsing method may call itself recursively either directly or indirectly. i.e A -> A+A
+Descent: the parser builds the parse tree (or AST) by descending through it as it parses the program. In this case we think of the parse tree as already existing implicitly in the code and as we read through it we traverse this imaginary tree. 
 
 #### Basis of writing one
 
@@ -328,14 +341,19 @@ The variable currentToken is the lookahead token, which is initialised to the le
 
 A method, called match, for matching the tokens at production right-hand sides, This just handles incorrect format errors. i.e `int =` instead of `int x =` would trigger a error at `=` as it was expecting a token of type `<id>`
 
-```javavoid match(int tokenExpected) {
+```java
+void match(int tokenExpected) {
 	if (currentToken.kind == tokenExpected) {
-		// Progress		currentToken = scanner.getToken();	} else {		error: "tokenExpected" expected but "currentToken" found
+		// Progress
+		currentToken = scanner.getToken();
+	} else {
+		error: "tokenExpected" expected but "currentToken" found
 	}
 }
 ```
 
-#### Nonterminal parsingA method, called parseA, for every nonterminal
+#### Nonterminal parsing
+A method, called parseA, for every nonterminal
 
 First how can we parse a non terminal A in the form
 of \\(A\rightarrow a_{1}|a_{2}|...|a_{n}\\)
@@ -345,9 +363,18 @@ find which one out currentToken matches with.
 i.e if our next token was \<expr\> and we had \\(A \rightarrow <expr> | <fact>\\) the parse code would match the expr and parse that not the fact. 
 
 ```java
-void parseA() {	switch (currentToken.kind) {
-		cases in Select(A→α1)			parse α1			break;			···		cases in Select(A→αn)			parse αn			break;
-		default:			syntacticError(...);			break;
+void parseA() {
+	switch (currentToken.kind) {
+		cases in Select(A→α1)
+			parse α1
+			break;
+			···
+		cases in Select(A→αn)
+			parse αn
+			break;
+		default:
+			syntacticError(...);
+			break;
 	}
 }
 ```
@@ -356,7 +383,8 @@ Of course if we have \\(A\rightarrow \alpha\\) then we just do
 
 ```java
 void parseA() {
-	parse α}
+	parse α
+}
 ```
 note that A is variable here it could be parseExpr or parseDick
 
@@ -367,9 +395,14 @@ Suppose \\(\alpha _i = aABbC\\), where A, B and C are nonterminals
 
 • parse \\(\alpha _{i}\\) implemented as:
 
-```javamatch("a");parseA();parseB();match("b");parseC();
+```java
+match("a");
+parseA();
+parseB();
+match("b");
+parseC();
 ```
-If \\(\alpha _{i} = \epsilon\\), then parse \\(\alpha _{i}\\) implemented as:
+If \\(\alpha _{i} = \epsilon\\), then parse \\(\alpha _{i}\\) implemented as:
 
 ```
 /* empty statement */
@@ -378,7 +411,13 @@ Suppose \\(\alpha _i = aABbC\\), where A, B and C are nonterminals
 This does mean that we need a parse statement for every one of thse
 
 ```java
-void parseWhileStmt() throws SyntaxError {   match(Token.WHILE);   match(Token.LPAREN);   parseExpr();	match(Token.RPAREN);  	parseStmt();}
+void parseWhileStmt() throws SyntaxError {
+   match(Token.WHILE);
+   match(Token.LPAREN);
+   parseExpr();
+	match(Token.RPAREN);
+  	parseStmt();
+}
 ```
 
 #### Managing the start symbol
@@ -399,9 +438,13 @@ It is called LL because It parses the input from `L`eft to right, performing `L`
 ---
 
 A grammar is LL(1) if for every nonterminal of the form
-\\(\\)A \rightarrow \alpha_{1}|···|\alpha_{n}\\(\\)the select sets are pairwise disjoint, i.e.:\\(\\)Select(A→\alpha_{i}) \cap Select(A→\alpha_{j}) = ∅\\(\\)
-for all i and j such that i != j.Basically for any given non terminal every derivation must only appear once. 
-This implies there can be at most one nullable alternative as every derivation has a unique Select set and thus path to it. 
+\\(A \rightarrow \alpha_{1}|···|\alpha_{n}\\)
+the select sets are pairwise disjoint, i.e.:
+\\(Select(A→\alpha_{i}) \cap Select(A→\alpha_{j}) = ∅\\)
+for all i and j such that i != j.
+
+Basically for any given non terminal every derivation must only appear once. 
+This implies there can be at most one nullable alternative as every derivation has a unique Select set and thus path to it. 
 
 When we have this we can have a parse function with only 1 nullable alternative in the transformation. Lets say that \\(\alpha_{n}\\) is the only nullable alternative. In this case we can set every other alpha simply as \\(Select(A\rightarrow \alpha_{i}) = First(\alpha_{i}) \\) because remember we only really case about the Follow sets in relation to nonterminals that can me eliminated. 
 
@@ -416,11 +459,31 @@ Lets take the left recursive grammar from slide 213 and try and form a parsing f
 
 ```
 E → E+T | E−T | T
-T → T∗F | T/F | FF → INT | (E)
+T → T∗F | T/F | F
+F → INT | (E)
 ```
 
 ```java
-void parseE() {switch (currentToken.kind) {	case Token.INT: case Token.LPAREN:		parseE();		break;	case Token.INT: case Token.LPAREN:      parseE();      match(Token.PLUS);      parseT();      break;	case Token.INT: case Token.LPAREN:      parseE();      match(Token.MINUS);      parseT();      break;	default:      syntacticError(...);break;￼￼￼}} /* this does not work */
+void parseE() {
+switch (currentToken.kind) {
+	case Token.INT: case Token.LPAREN:
+		parseE();
+		break;
+	case Token.INT: case Token.LPAREN:
+      parseE();
+      match(Token.PLUS);
+      parseT();
+      break;
+	case Token.INT: case Token.LPAREN:
+      parseE();
+      match(Token.MINUS);
+      parseT();
+      break;
+	default:
+      syntacticError(...);
+break;
+￼￼￼}
+} /* this does not work */
 
 ```
 
@@ -446,7 +509,8 @@ Lets say given the following grammar
 
 We can transform into this to remove the left recursion on the second transformation. 
 
-\\(A → \alpha A′\\)\\(A′ → \beta_{1}A′|\beta_{2}A′|\epsilon\\)
+\\(A → \alpha A′\\)
+\\(A′ → \beta_{1}A′|\beta_{2}A′|\epsilon\\)
 
 Note the use of a intermediate to convert this into a form that uses RIGHT recursion instead, i.e you can parse but after a match to make sure a loop doesn't hit. 
 
@@ -483,7 +547,8 @@ Given
 we can get
 
 \\(A → \alpha A′\\)
-\\(A→\gamma\\)\\(A′→ \beta_{1}|\beta_{2}\\)
+\\(A→\gamma\\)
+\\(A′→ \beta_{1}|\beta_{2}\\)
 
 All we did here was `left factor` the grammar i.e make transformation 1 into \\(A \rightarrow \alpha(\beta_{1}|\beta_{2})\\) and then replace that with a intermediate. 
 
@@ -513,7 +578,14 @@ A grammar is LL(k) if it can be parsed deterministically using k tokens of looka
 ## Ass 2
 ---
 
-• A subset of VC already implemented for you• For expressions, you need to eliminate left-recursion onseveral nonterminals as illustrated in Slide 242• You also need to eliminate some common prefixes (e.g.,one for ⟨primary-expr⟩) as illustrated in Slide 247.• A simple left-factoring can fix the LL(2) construct:⟨prog⟩ → ( ⟨func-decl⟩ | ⟨var-decl⟩ )∗• Everything else should be quite straightforward
+• A subset of VC already implemented for you
+• For expressions, you need to eliminate left-recursion on
+several nonterminals as illustrated in Slide 242
+• You also need to eliminate some common prefixes (e.g.,
+one for ⟨primary-expr⟩) as illustrated in Slide 247.
+• A simple left-factoring can fix the LL(2) construct:
+⟨prog⟩ → ( ⟨func-decl⟩ | ⟨var-decl⟩ )∗
+• Everything else should be quite straightforward
 
 ## General cases
 ---

@@ -1,13 +1,14 @@
+
 # Syntax And Semantics
 
 ## Defintion
 ---
 
-Syntax is the t he form or structure of English sentences, there isnNo concern with the meaning of English sentences. 
+Syntax is the the form or structure of English sentences, there isnNo concern with the meaning of English sentences. 
 `john ate the apple` vs `apple ate the john`
 
-the english grammar defines how english is put together and hence defines the syntax. 
-Semantics is the meaning of English sentences, which can be defined by a dictionary or more broadly humans in general.
+The english grammar defines how english is put together and hence defines the syntax. 
+Semantics is the meaning of English sentences, which can be defined by a dictionary or more broadly humans in general.
 
 ## Semantics
 ---
@@ -33,7 +34,9 @@ c="hi";
 printf("hi");
 ```
 #### Run Time Semantics
-What the program does or computes, i.e the meaning of a program or what happens when it is executedIs specified by code generation routines.
+What the program does or computes, i.e the meaning of a program or what happens when it is executed
+
+Is specified by code generation routines.
 
 # Grammer / CFG
 
@@ -66,8 +69,16 @@ In this course we use both CFG and RG.
 
 #### Intro
 
-A grammar G is a quadruple (\\(V_T\\),\\(V_N\\),\\(S\\),\\(P\\)), where- \\(V_T\\) is a finite set of terminal symbols or tokens (end points)- \\(V_N\\) is a finite set of nonterminal symbols
-	- \\(V_T\\) ∩ \\(V_N\\) = ∅, i.e a symbol has to be either a terminal or non terminal symbol, not both. - \\(S\\) is a unique start symbol (S ∈ N)- \\(P\\) is a finite set of rules or productions of the form (A, α) whereA is a nonterminal, and	- α is a string of zero or more terminals and nonterminals	- Note: zero means that α = ǫ is possible
+A grammar G is a quadruple (\\(V_T\\),\\(V_N\\),\\(S\\),\\(P\\)), where
+
+- \\(V_T\\) is a finite set of terminal symbols or tokens (end points)
+- \\(V_N\\) is a finite set of nonterminal symbols
+	- \\(V_T\\) ∩ \\(V_N\\) = ∅, i.e a symbol has to be either a terminal or non terminal symbol, not both. 
+- \\(S\\) is a unique start symbol (S ∈ N)
+- \\(P\\) is a finite set of rules or productions of the form (A, α) where
+A is a nonterminal, and
+	- α is a string of zero or more terminals and nonterminals
+	- Note: zero means that α = ǫ is possible
 
 #### Backus-Naur Form (BNF)
 
@@ -76,15 +87,21 @@ just a notation for writing a CFG, here the (A, \\(\alpha\\)) production is the 
 It also allows us to abbreviate something like this 
 
 \\(A \rightarrow \alpha 1\\)
+
 \\(A \rightarrow \alpha 2\\)
+
 \\(A \rightarrow \alpha 3\\)
+
 \\(A \rightarrow \alpha 4\\)
 
 to something like this
 
 \\(A \rightarrow \alpha 1\\)
+
 \\(| \rightarrow \alpha 2\\)
+
 \\(| \rightarrow \alpha 3\\)
+
 \\(| \rightarrow \alpha 4\\)
 
 where the pipe is just a "or else"
@@ -97,9 +114,13 @@ where the pipe is just a "or else"
 
 lets take a very small simple subset of english and define the CFG for it in BNF. 
 
-```1 ⟨sentence⟩ → ⟨subject⟩ ⟨predicate⟩
-2 ⟨subject⟩ → NOUN3		| ARTICLENOUN
-4 ⟨predicate⟩ → VERB ⟨object⟩5 ⟨object⟩ → NOUN6 		| ARTICLENOUN
+```
+1 ⟨sentence⟩ → ⟨subject⟩ ⟨predicate⟩
+2 ⟨subject⟩ → NOUN
+3		| ARTICLENOUN
+4 ⟨predicate⟩ → VERB ⟨object⟩
+5 ⟨object⟩ → NOUN
+6 		| ARTICLENOUN
 ```
 
 This just says the a sentence is a subject followed by a predicated and then defines a subject as either a noun or article noun and a predicate as a verb followed by a noun or article noun 
@@ -117,7 +138,8 @@ and the productions themselves are listed.
 ---
 
 A grammar derives sentences by
-1. beginning with the start symbol, and2. repeatedly replacing a nonterminal by the right-hand side of a production with that nonterminal on the left-hand side, until there are no more nonterminals to replace.
+1. beginning with the start symbol, and
+2. repeatedly replacing a nonterminal by the right-hand side of a production with that nonterminal on the left-hand side, until there are no more nonterminals to replace.
 
 Such a sequence of replacements is called a `derivation` of the sentence being analysed
 
@@ -158,20 +180,28 @@ The algorithm is basically saying "alright what's non terminal and what can i re
 
 and which non terminal the algorithm picks next can be set to be either
 
-1. The Leftmost derivation: always replace the leftmostnonterminal.2. The Rightmost derivation: always replace the rightmost nonterminal.
+1. The Leftmost derivation: always replace the leftmost
+nonterminal.
+2. The Rightmost derivation: always replace the rightmost nonterminal.
 
 ## The language defined by a grammar
 ---
 
-The language defined by a grammar: all the sentences derived from the grammar.The language defined by the micro-English grammar:	`NOUN VERB NOUN`	`NOUN VERB ARTICLE NOUN`
-	`ARTICLE NOUN VERB NOUN`	`ARTICLE NOUN VERB ARTICLE NOUN`
+The language defined by a grammar: all the sentences derived from the grammar.
+The language defined by the micro-English grammar:
+	`NOUN VERB NOUN`
+	`NOUN VERB ARTICLE NOUN`
+	`ARTICLE NOUN VERB NOUN`
+	`ARTICLE NOUN VERB ARTICLE NOUN`
 
 # Parsing
 
 ## Intro
 ---
 
-Use syntactic rules to break a sentence into its component parts and analyse their relationship. a parser is thus a program that uses a CFG to parse a sentence or a program (Assignment 3). In particular, it constructs its leftmost or rightmost derivation, or builds the parse tree for the sentence.A recogniser is a parser that checks only the syntax (without having to built the parse tree). It outputs YES if the program is legal and NO otherwise (Assignment 2).
+Use syntactic rules to break a sentence into its component parts and analyse their relationship. a parser is thus a program that uses a CFG to parse a sentence or a program (Assignment 3). In particular, it constructs its leftmost or rightmost derivation, or builds the parse tree for the sentence.
+
+A recogniser is a parser that checks only the syntax (without having to built the parse tree). It outputs YES if the program is legal and NO otherwise (Assignment 2).
 
 <img src="raw/D_3.png" style="width: 500px">
 
@@ -207,7 +237,8 @@ lets say that a VC program is a sequence of zero or more functions
 in BNF that would be
 
 ```
-program → decl-listdecl-list → decl-list func-decl
+program → decl-list
+decl-list → decl-list func-decl
 		| decl-list var-decl
 		| ϵ
 ```
@@ -239,9 +270,13 @@ There is a classic expression grammar
 ```
 ⟨expr⟩ → ⟨expr⟩ + ⟨term⟩
 		| ⟨expr⟩ − ⟨term⟩
-		| ⟨term⟩⟨term⟩ → ⟨term⟩ ∗ ⟨factor⟩
+		| ⟨term⟩
+⟨term⟩ → ⟨term⟩ ∗ ⟨factor⟩
 		| ⟨term⟩/⟨factor⟩
-		| ⟨factor⟩⟨factor⟩ → ( ⟨expr⟩ )		|ID		| INT    //Note:integer numbers not the type
+		| ⟨factor⟩
+⟨factor⟩ → ( ⟨expr⟩ )
+		|ID
+		| INT    //Note:integer numbers not the type
 ```
 
 I.e any math expression can be broken down into some + / - of terms first and then those terms can be expressed as a factor or multiple of factors and terms. 
@@ -288,7 +323,8 @@ this is important because with equations with equal precedence like `A-B-C` the 
 anyone who speaks english knows that it's a bit fucked, for example, real sentences written into medical records:
 
 1. By the time he was admitted, his rapid heart had stopped, and he was feeling better.
-2. Patient has chest pain if she lies on her left side for over a year.3. On the second day the knee was better and on the third day it had completely disappeared.
+2. Patient has chest pain if she lies on her left side for over a year.
+3. On the second day the knee was better and on the third day it had completely disappeared.
 4. The patient was tearful and crying constantly. She also appears to be depressed.
 5. Discharge status: Alive but without permission. The patient will need disposition, and therefore we will get Dr. Blank to dispose of him.
 
@@ -296,7 +332,10 @@ PURE FUCKEN GOLD
 
 A grammar is ambiguous if it permits
 
-- more than one parse tree for a sentence,or in other words,- more than one leftmost derivation or more than onerightmost derivation for a sentence.
+- more than one parse tree for a sentence,
+or in other words,
+- more than one leftmost derivation or more than one
+rightmost derivation for a sentence.
 
 Basically if the same sentence can be interpreted in more then one way. 
 
@@ -304,7 +343,8 @@ Basically if the same sentence can be interpreted in more then one way.
 
 An ambiguous expression grammar:
 
-```⟨expr⟩ → ⟨expr⟩ ⟨op⟩ ⟨expr⟩ | ID | INT | ( ⟨expr⟩ )
+```
+⟨expr⟩ → ⟨expr⟩ ⟨op⟩ ⟨expr⟩ | ID | INT | ( ⟨expr⟩ )
 ⟨op⟩ →+|−|∗|/
 ```
 
@@ -317,8 +357,9 @@ if we take the Lm (Leftmost derivation) we can get 2 results
 well the obvious thing is to rewrite the grammar so it is unambiguous
 
 we can also use disambiguating rules to throw away undesirable parse trees, leaving only one tree for each sentence. I.e we get multiple results but have a system for choosing 1 each time. i.e
-- Rule 1: * and / have higher precedence than + and −
-- Rule 2: The operators of equal precedence associate tothe left.
+- Rule 1: * and / have higher precedence than + and −
+- Rule 2: The operators of equal precedence associate to
+the left.
 
 #### Ambiguous Context-Free Languages
 
