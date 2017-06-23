@@ -222,6 +222,7 @@ invokeinterface
 ther all work like `invokexx method-spec` and uses n arguments on the stack as the n arguments to take in, it then pushes on the result when done. invoke static ann invoke special/virtual are onyl different because of the arguments. Static doesn't have slot 0 contain `this`.
 
 • invokevirtual: on the dynamic type of objref `strInstance.count()`
+
 • invokespecial: based on the static class of objref `String.format()`
 
 

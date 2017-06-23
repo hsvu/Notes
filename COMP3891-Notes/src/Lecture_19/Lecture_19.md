@@ -138,6 +138,42 @@ Clean pages are much cheaper to replace then dirty pages.
 **Precleaning** is when pages are written out in batches in the background to increase the likelihood we replace a clean frame. We also try to overlap this I/O
 
 
+# IO Management Intoduction
+
+There are many I/O devices (a serial port, a robot arm, a aeroplane wing) and this each one has a wildly different interface. a OS needs to have some sort of uniform and efficient approach to I/O that doesn't make the user rewrite the I/O interface to mesh. having diverse interfaces means a lot of code duplication. 
+
+## Catagories
+---
+
+#### Human interface
+used to communicate with user, printers, video display, keyboard, mouse. Can be slower as humans won't notice anything / type faster then a threshold. 
+
+#### Machine interface
+used to communicate with electronic equipment, disk and tape drives, sensors, costrollers. Has to be faster etc. 
+
+#### Communication
+used to commnicate with remote devices i.e ethernet modems wireless, must be incredibly fast. 
+
+
+## Device handling considerations
+---
+
+#### data rate
+One thing the os has to care about is data rate which might be hugely different between devices. 
+
+if it takes you 1000 cycles to read a byte, you don't need a powerful processor to handle keyboard input, but something like gigabiy ethernet would need a 100 GHz processor. 
+
+#### unit of transfer
+a steam device vs a block devise like a disk
+
+#### Data representation
+how data is encoded, the internet is big endian, and x86 runs little endian. 
+
+#### Error conditions
+how devices respond to errors, there used to be a old error that warned the user that your printer may be on fire. also different devices may have a different error rates. 
+
+
+
 
 
 

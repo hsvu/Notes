@@ -1,17 +1,59 @@
+## PAST PAPER TIPS
+---
+
+When doing leftmost derivation, structure like this
+
+sentence ⇒lm fnc
+
+and just stop at id don't give the lexme (sometimes)
+
+follow sets don't have epsilon in them, either you are follwoed by EOF or a token obviously. 
+
+LL(1) parsing tables also do not have epsilon but do have end of file!
+
+remember functions have highest scope. 
+
+remember unless a experssion is empty, a assign expression, or a void call, it will have a value on the stack. 
+
+
 ## QUESTIONS
 ---
 
-1. WHY BOTHER FORMING A DFA FROM A NFA RATHER THEN DIRECTLY / WHY NOT USE A NFA
+1. Whats up with Chomsky’s Hierarchy????
 
-2. Whats up with Chomsky’s Hierarchy????
+not in the exam
 
+2. do we need to memorise JVM instructions?
+
+no need to memorise, there is appendix. 
+
+3. define regular grammar/expression
+
+all transformations must be A->aB
+
+4. might be a good idea to memorise the exact algorithm of subset constuction + DFA minimisation :/
+
+5. L and S
+
+L is inheritend information from a left to right pass
+S is synthesised information in which we only need to look at our children. 
+
+6. revise follow set algorithm
+all G
+
+7. note that left recursion enforces left assoiativity and right right
+
+8. if two nodes have equal precendence then assoicativity groups elements
+
+9. the higher in the tree the lower the precedence. 
 
 ## EXAM PLAN
 ---
 
 1. revise lectures
-2. revise assignment code + tutorial questions
-3. extra
+2. do past papers + read over this
+3. revise assignment code + tutorial questions
+
 
 ## Intro
 ---
@@ -123,6 +165,47 @@ Note that Left Recursion means that we can't be LL(1) because we can go into a i
 
 Note that if you have statements with common prefixes then you can't have LL(1) cause you need another lookahead token to tell which of the two to choose. see dangling else grammar. 
 
+A Table-driven Ll(1) parser can't handle left recursion cause then you have 2 entries in 1 cell. 1 for the terminating step and one for the recurrsive case. also remember with table driven that $ is a valid terminal. 
+
+note LL(1) parsers can count / balance parenthesis. think about S->(S)|epsilon
+the table will look like
+```
+  | (  | ) | $
+---------------
+S | (S)| e | e
+```
+
+if we parse `(())` we are fine but try to do `(()` and it fails on scanning the `)`. This is because the table driven parser uses a stack!
+
+note that a preducated LL(k) uses a conditional to help chose between two conflicting productions at runtime of a parser generator. 
+
+A phrase of a grammar G is a string of terminals labelling the terminal nodes (from left to right) of a parse tree
+
+note the AST takes out a lot of stuff like the key words and brackets and stuff as it's all only there to help build the tree. afterwards it's useless. 
+
+An attribute grammar is just a CFG with a set of transformation to give each grammar to give each non terminal a attribute or set of attributes. 
+
+Semantic analysis is the context sensitive analysis step and enforces thigs that a CFG can't, such as all variables must be defined before used. An attribute grammar lets us enforce context sensitive constraints. 
+
+Synthesised attributes computed from children Inherited attributes computed from parent and siblings
+
+a decorated parse tree is just a parse tree with added attribute grammar elements. 
+
+You can evalute an attribute grammar (fill in the values of the attributes for each node) by walking the tree although this assumes that the attribute grammar is non circular (no attribute depends on itself) and finding if a grammar is circular or not takes exponential time to figure out. 
+
+We can also do this via Rule based methods, where a programmar hardcodes a evaluation order at compiler-construction time. 
+
+An L attributed Grammar is one where you can traverse the decorated parse tree left to right in 1 pass and have all the attributes filled in. An attribute grammar is L-attributed if the inherited symbols on the right hand side of every non-terminal transformation depend only on the attributes of symbols to the left of the symbol and the inherited attributes of the symbol. The L comes from the information flowing from left to right.
+
+An attribute grammar is S-attributed if it uses synthesised attributes only. These grammars allow for parsing and semantic analysis in one pass in bottom-up parsers.The information always flows up in the tree as all attributes are synthesised and don't need any information from higher in the tree to be derrived.
+
+Every S-attributed grammar is L-attributed. This is because if there are no inherited attributes there is nothing that MUST be evaluated before contining a traversal. So we can happily progress left to right.
+
+Think about it, a L attributed grammar only uses inherited attributes and the syntehsised attributes of non terminals on it's left. That is to say that as you go through a transformation left to right you never need to look further to the right to give the current non terminal a attribute. An S attributed grammar is the same but doesn't need the inherited attributes simply relying on the synthesised attributes of the non terminals to the left of any non terminal. 
+
+A Block structured language permits the nesting of blocks, note though that c is not strictly block-structured because you can't nest functions inside of functions 
+
+Most closed nested rule: for multiple defintions grab the one in the cloest scope. 
 
 
 
@@ -135,9 +218,12 @@ for some compilers this step can be skipped and the AST is used to generate code
 
 note some common optimisations that can we done on the IR is to remove code that can't be reached, replace some variable access with a constant if it happens a lot and remove reduant computation or move code around so it runs better. 
 
+• invokevirtual: on the dynamic type of objref `strInstance.count()`
+• invokestatic: based on the static class of objref `String.format()`
 
-
-
-
-
+invokespecial // also known as invokenonvirtual
+    - the instance initialisation method <init>
+    - a private method of "this"
+    - a method in a super class of "this"
+    - invokespecial is used to call methods without concern for dynamic binding, in order to invoke the particular class’ version of a mehod.
 

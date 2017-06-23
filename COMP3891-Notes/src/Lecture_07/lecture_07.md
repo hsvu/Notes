@@ -42,31 +42,37 @@ this is an alright solution for systems with no much writing, it has it's uses.
 
 Examples of computer resources
 
-- printers- tape drives- Tables in a database
-can also be abstract like rows or cols in a database. whatever it is, processes need access to resources in a reasonable order. 
+- printers
+- tape drives
+- Tables in a database
+can also be abstract like rows or cols in a database. whatever it is, processes need access to resources in a reasonable order. 
 there are two types of resources
 
 Preemptable resources
-- can be taken away from a process with no ill effects
+- can be taken away from a process with no ill effects
 - a database write maybe
-Nonpreemptable resources
-- will cause the process to fail if taken away
+Nonpreemptable resources
+- will cause the process to fail if taken away
 - i.e you can't stop a printer half way through
 
 #### Deadlocks
 
 Suppose a process holds resource A and requests resource B
-- at same time another process holds B and requests A
-- both are blocked and remain so - DeadlockedDeadlocks occur when
-- processes are granted exclusive access to devices, locks, tables, etc..
+- at same time another process holds B and requests A
+- both are blocked and remain so - Deadlocked
+
+Deadlocks occur when
+- processes are granted exclusive access to devices, locks, tables, etc..
 - we refer to these entities generally as resources
 - Not a issue if 7 processes can have access to the resource 
 
 #### Access
 
 Sequence of events required to use a resource
-1. request the resource2. use the resource3. release the resource
-Must wait if request is denied and the requesting process may be blocked 
+1. request the resource
+2. use the resource
+3. release the resource
+Must wait if request is denied and the requesting process may be blocked 
 to be fair though it may also fail with error code
 
 note though that the order you grab locks is INCREDIBLY important
@@ -74,10 +80,21 @@ note though that the order you grab locks is INCREDIBLY important
 think about this
 
 ```c
-semaphore res_1, res_2;void proc_A() {
-	down(&res_1);	down(&res_2);	use_both_res();	up(&res_2);	up(&res_1);
+semaphore res_1, res_2;
+void proc_A() {
+	down(&res_1);
+	down(&res_2);
+	use_both_res();
+	up(&res_2);
+	up(&res_1);
 }
-void proc_B() {   down(&res_2);   down(&res_1);   use_both_res();   up(&res_1);   up(&res_2);}
+void proc_B() {
+   down(&res_2);
+   down(&res_1);
+   use_both_res();
+   up(&res_1);
+   up(&res_2);
+}
 ```
 
 proc_a grabs lock 1 and then is interrupted. proc_b comes in and grabs lock 2 but then stops because proc_a has lock 1 so it sleeps. 
@@ -89,8 +106,15 @@ now neither can make progress!!!! D E A D L O C K
 ## Four Conditions of a deadlock
 ---
 
-1. Mutual exclusion condition	- each resource assigned to 1 process or is available2. Hold and wait condition	- process holding resources can request additional ones without 	giving up what it currently holds3. No preemption condition
-	- no one can take the lock from you without your consent4. Circular wait condition- must be a circular chain of 2 or more processes- each is waiting for resource held by next member of the chain
+1. Mutual exclusion condition
+	- each resource assigned to 1 process or is available
+2. Hold and wait condition
+	- process holding resources can request additional ones without 	giving up what it currently holds
+3. No preemption condition
+	- no one can take the lock from you without your consent
+4. Circular wait condition
+- must be a circular chain of 2 or more processes
+- each is waiting for resource held by next member of the chain
 
 
 ## Representing Deadlocks
@@ -117,7 +141,10 @@ If the system is complex enough sometimes a dead lock can go without even being 
 ## Dealing with Deadlocks
 ---
 
-1. Just ignore the problem altogether2. prevention	- negating one of the four necessary conditions3. detection and recovery
+1. Just ignore the problem altogether
+2. prevention
+	- negating one of the four necessary conditions
+3. detection and recovery
 4. dynamic avoidance
 	- careful resource allocation
 
@@ -163,7 +190,7 @@ $$(E_{1},E_{2},E_{3}...E_{m})$$
 
 We can then form a matrix to outline every process as a row n and every col as a resource m. 
 
-$$\begin{bmatrix}C_{11} & C_{12} & ... & C_{1m}\\C_{11} & C_{12} & ... & C_{2m}\\... & ... & ... & ...\\C_{n1}&C_{n2} & ... & C_{nm}\end{bmatrix}$$
+$$\begin{bmatrix}C_{11} & C_{12} & ... & C_{1m}\\\C_{11} & C_{12} & ... & C_{2m}\\\\... & ... & ... & ...\\\C_{n1}&C_{n2} & ... & C_{nm}\end{bmatrix}$$
 
 here row n represents all the resource process n has
 
@@ -174,7 +201,7 @@ The cols here are the list of available resources rather then all possible. each
 
 $$(A_{1},A_{2},A_{3}...A_{m})$$
 
-$$\begin{bmatrix}R_{11} & R_{12} & ... & R_{1m}\\R_{11} & R_{12} & ... & R_{2m}\\... & ... & ... & ...\\R_{n1}&R_{n2} & ... & R_{nm}\end{bmatrix}$$
+$$\begin{bmatrix}R_{11} & R_{12} & ... & R_{1m}\\\R_{11} & R_{12} & ... & R_{2m}\\\\... & ... & ... & ...\\\R_{n1}&R_{n2} & ... & R_{nm}\end{bmatrix}$$
 
 with this set up we set a system wide invariant:
 
@@ -192,7 +219,9 @@ so this system has 4 tape drives available and 2 being used etc.
 
 Now what we can do
 
-1. Look for an unmarked process Pi, for which the i-th row of R is less than or equal to A2. If found,add the i-th row of C to A,and mark Pi. Go to step 13. If no such process exists, terminate. Remaining processes are deadlocked
+1. Look for an unmarked process Pi, for which the i-th row of R is less than or equal to A
+2. If found,add the i-th row of C to A,and mark Pi. Go to step 1
+3. If no such process exists, terminate. Remaining processes are deadlocked
 
 all this essentially does is to run through the program via the matricies and if you can't complete every process you can identify the dead lock. 
 
@@ -203,19 +232,23 @@ it's in the last 10-15 minutes of Week 4 lecture 1.
 #### Recovery
 
 Recovery through preemption
-- take a resource from some other process to free them up and stop the deadlock
+- take a resource from some other process to free them up and stop the deadlock
 - depends on nature of the resource, it might crash the other resource or it might handle it
 - It can't tell what's the best one to take from so it may stop a critical program even though it really should be taking from the least important process. 
 
 Recovery through rollback
-- checkpoint a process periodically
+- checkpoint a process periodically
 	- Used in mathematical and scientific calculations that takes months 	to run so if something goes wrong you don't have to start again. 
 	- It might dead lock again when you restart and also has a lot of overhead but it's worth it for a program that runs for month cause if a power outage hits you want to handle it 
-- use this saved state when a dead lock occurs- we can also restart the process if it is found deadlocked 
+- use this saved state when a dead lock occurs
+- we can also restart the process if it is found deadlocked 
 	- No guarantee is won’t deadlock again
 
 Recovery through killing processes
-- crudest but simplest way to break a deadlock- kill one of the processes in the deadlock cycle- the other processes get its resources- choose process that can be rerun from the beginning
+- crudest but simplest way to break a deadlock
+- kill one of the processes in the deadlock cycle
+- the other processes get its resources
+- choose process that can be rerun from the beginning
 
 
 

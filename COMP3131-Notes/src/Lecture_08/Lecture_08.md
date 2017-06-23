@@ -48,7 +48,7 @@ We know what the scope of a decleration or variable is, what's new is the idea o
 4. The scope of a built-in function is the entire program. 
 5. no identifier can be declared more then once in a block
 6. Most closed nested rule: For every use of an identifer I in a block B there must be a corresponding decleration, in block B which is in the smallest enclosing block that contains any declaration of I 
-7. Due to rule 6 if we have a block inside of a block we have a `scope hole` where if the same identifier is declared twice the inner decleration hides the opper one and the outer decleration is not visible in the innter decleration
+7. Due to rule 6 if we have a block inside of a block we have a `scope hole` where if the same identifier is declared twice the inner decleration hides the upper one and the outer decleration is not visible in the innter decleration
 
 consider this 
 
