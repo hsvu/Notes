@@ -1,5 +1,1 @@
-{
-	"COMP3131": "How to Build a compiler and understand language semantics",
-	"COMP2121": "A intro to microprocessors course",
-	"COMP3891": "Operating systems in the context of harvards os161"
-}
+{"subs": {"COMP3131": "How to Build a compiler and understand language semantics", "COMP2121": "A intro to microprocessors course", "COMP3891": "Operating systems in the context of harvards os161"}, "tree": {"COMP3891": ["EXT_01", "EXT_02", "EXT_03", "EXT_04", "EXT_05", "EXT_06", "EXT_07", "EXT_09", "EXT_10", "EXT_11", "FinalSummary", "Lecture_01", "Lecture_02", "Lecture_03", "Lecture_04", "Lecture_05", "Lecture_06", "Lecture_07", "Lecture_08", "Lecture_09", "Lecture_10", "Lecture_11", "Lecture_12", "Lecture_13", "Lecture_14", "Lecture_15", "Lecture_16", "Lecture_17", "Lecture_18", "Lecture_19", "Lecture_20", "allLectures", "allLecturesExt"], "COMP3131": ["ExamTips", "lecture_1", "lecture_2", "lecture_3", "lecture_4"], "COMP2121": ["allLectures"]}, "counts": {"COMP3891": 33, "COMP3131": 5, "COMP2121": 1}}
